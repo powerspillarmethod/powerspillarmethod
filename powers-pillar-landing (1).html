@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Powers Pillar Method | Holistic Nutrition Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest:   #2c4a30;
+    --sage:     #5c7e5f;
+    --sage-mid: #7a9e7e;
+    --sage-lt:  #b8d4bb;
+    --cream:    #faf6ef;
+    --warm:     #f2e9d8;
+    --sand:     #e8dcc8;
+    --bark:     #7a6248;
+    --gold:     #b8924a;
+    --gold-lt:  #e8d4a8;
+    --charcoal: #2a2a2a;
+    --muted:    #6a6a6a;
+    --white:    #ffffff;
+    --r: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(250,246,239,0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--forest);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--charcoal);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--forest) !important;
+    color: var(--white) !important;
+    padding: 10px 22px !important;
+    border-radius: 100px !important;
+    opacity: 1 !important;
+    font-size: 13px !important;
+  }
+  .nav-cta:hover { background: var(--sage) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--forest);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 64px 80px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    bottom: -200px; left: -100px;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+    top: 80px; right: -80px;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage-lt);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage-lt);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    padding: 15px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #a07a38; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 15px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+
+  .hero-right {
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 64px 80px 48px;
+    position: relative;
+  }
+  .hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 48px 40px;
+    box-shadow: 0 24px 64px rgba(44,74,48,0.12);
+    max-width: 380px;
+    width: 100%;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 40px; right: 40px; height: 4px;
+    background: linear-gradient(90deg, var(--sage), var(--gold));
+    border-radius: 100px;
+  }
+  .hero-card-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .audit-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0ece4;
+  }
+  .audit-row:last-of-type { border-bottom: none; }
+  .audit-icon {
+    width: 38px; height: 38px;
+    background: var(--warm);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .audit-text { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .audit-text strong { color: var(--charcoal); display: block; font-size: 14px; }
+  .hero-card-cta {
+    display: block;
+    background: var(--forest);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 24px;
+    transition: background 0.2s;
+  }
+  .hero-card-cta:hover { background: var(--sage); }
+  .hero-card-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    background: var(--sand);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--bark);
+    font-weight: 500;
+  }
+  .trust-item span { font-size: 18px; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--charcoal);
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+  .section-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, var(--sage-lt) 0%, var(--warm) 60%, var(--sand) 100%);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-image-placeholder::after {
+    content: 'Your photo here';
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-family: 'Jost', sans-serif;
+    color: rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--forest);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(44,74,48,0.25);
+  }
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1;
+    display: block;
+  }
+  .about-badge-label {
+    font-size: 11px;
+    color: var(--sage-lt);
+    letter-spacing: 1px;
+  }
+  .about-content { padding-right: 20px; }
+  .about-content .section-title { margin-bottom: 24px; }
+  .about-content p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .about-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .cred-tag {
+    background: var(--warm);
+    color: var(--bark);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ─── PILLARS ─── */
+  #pillars { background: var(--cream); }
+  .pillars-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .pillar-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(44,74,48,0.1);
+  }
+  .pillar-card::after {
+    content: attr(data-num);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 600;
+    color: rgba(92,126,95,0.05);
+    position: absolute;
+    right: 16px; bottom: -20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pillar-emoji {
+    font-size: 36px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .pillar-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--forest);
+  }
+  .pillar-card .pillar-sub {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .pillar-card p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .pillar-card ul {
+    list-style: none;
+    margin-top: 16px;
+  }
+  .pillar-card ul li {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .pillar-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--sage-mid);
+    font-size: 12px;
+  }
+
+  /* ─── AUDIT CTA ─── */
+  #audit {
+    background: var(--forest);
+    padding: 80px 48px;
+  }
+  .audit-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .audit-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .audit-text h2 em { color: var(--sage-lt); font-style: italic; }
+  .audit-text p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+  .audit-form-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 36px;
+  }
+  .audit-form-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .audit-form-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+  }
+  .form-field {
+    margin-bottom: 14px;
+  }
+  .form-field input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-field input::placeholder { color: rgba(255,255,255,0.35); }
+  .form-field input:focus { border-color: var(--sage-mid); }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: #a07a38; }
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
+  }
+
+  /* ─── PACKAGES ─── */
+  #packages { background: var(--warm); }
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .package-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 32px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .package-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 56px rgba(44,74,48,0.1);
+  }
+  .package-card.featured {
+    background: var(--forest);
+    color: #fff;
+  }
+  .package-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .package-name {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .package-card.featured .package-name { color: var(--sage-lt); }
+  .package-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--forest);
+  }
+  .package-card.featured h3 { color: #fff; }
+  .package-price {
+    margin-bottom: 28px;
+  }
+  .package-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+  .package-card.featured .package-amount { color: #fff; }
+  .package-period {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .package-card.featured .package-period { color: rgba(255,255,255,0.5); }
+  .package-divider {
+    height: 1px;
+    background: #f0ece4;
+    margin-bottom: 24px;
+  }
+  .package-card.featured .package-divider { background: rgba(255,255,255,0.15); }
+  .package-features { list-style: none; margin-bottom: 32px; }
+  .package-features li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    padding: 7px 0;
+    line-height: 1.4;
+  }
+  .package-card.featured .package-features li { color: rgba(255,255,255,0.75); }
+  .package-features li::before {
+    content: '✓';
+    color: var(--sage);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .package-card.featured .package-features li::before { color: var(--sage-lt); }
+  .pkg-btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+  }
+  .pkg-btn:hover { background: var(--forest); color: #fff; }
+  .package-card.featured .pkg-btn {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+  }
+  .package-card.featured .pkg-btn:hover { background: #a07a38; border-color: #a07a38; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--cream); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--sage-lt);
+    position: absolute;
+    top: 12px; left: 24px;
+    line-height: 1;
+  }
+  .testimonial-quote {
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    margin-top: 32px;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .testimonial-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .testimonial-detail {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--white); }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: start;
+  }
+  .faq-list { }
+  .faq-item {
+    border-bottom: 1px solid #f0ece4;
+    padding: 24px 0;
+  }
+  .faq-item:first-child { padding-top: 0; }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 20px;
+  }
+  .faq-q-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.4;
+  }
+  .faq-toggle {
+    width: 28px; height: 28px;
+    background: var(--warm);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--sage);
+    flex-shrink: 0;
+    font-weight: 300;
+    line-height: 1;
+    transition: background 0.2s, transform 0.3s;
+    user-select: none;
+  }
+  .faq-item.open .faq-toggle {
+    background: var(--sage);
+    color: #fff;
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding-top: 14px;
+  }
+  .faq-cta-card {
+    background: var(--forest);
+    border-radius: 24px;
+    padding: 48px 40px;
+    color: #fff;
+    position: sticky;
+    top: 100px;
+  }
+  .faq-cta-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .faq-cta-card h3 em { color: var(--sage-lt); font-style: italic; }
+  .faq-cta-card p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .faq-cta-btn {
+    display: block;
+    background: var(--gold);
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 14px;
+    transition: background 0.2s;
+  }
+  .faq-cta-btn:hover { background: #a07a38; }
+  .faq-cta-note {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    padding: 56px 48px 40px;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-brand h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1      { animation-delay: 0.2s; }
+  .hero-sub     { animation-delay: 0.3s; }
+  .hero-btns    { animation-delay: 0.4s; }
+  .hero-card    { animation: fadeUp 0.7s ease 0.3s both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 100px 32px 60px; }
+    .hero-right { padding: 48px 32px 60px; }
+    section { padding: 72px 24px; }
+    .about-grid,
+    .pillars-intro,
+    .audit-inner,
+    .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .packages-grid,
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .trust-bar { gap: 24px; padding: 20px 24px; }
+    .about-badge { right: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">The Powers Pillar Method</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#pillars">The Method</a>
+    <a href="#packages">Work With Me</a>
+    <a href="#testimonials">Results</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" class="nav-cta">Book Discovery Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Holistic Nutrition Coaching</div>
+    <h1>Health that works<br>across <em>all four</em><br>dimensions of you</h1>
+    <p class="hero-sub">The Powers Pillar Method is a whole-person coaching approach built on four pillars — Nutrition, Lifestyle, Sleep, and Relationships — because no single pillar builds a healthy life alone.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="#pillars" class="btn-ghost">Learn the Method</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">Free Resource</div>
+      <h3>Take the 4-Pillar Health Audit</h3>
+      <div class="audit-row">
+        <div class="audit-icon">🥗</div>
+        <div class="audit-text"><strong>Nutrition</strong>How you fuel your body</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-icon">🌿</div>
+        <div class="audit-text"><strong>Lifestyle</strong>How you move & manage stress</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-icon">🌙</div>
+        <div class="audit-text"><strong>Sleep</strong>How deeply you recover</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-icon">🤝</div>
+        <div class="audit-text"><strong>Relationships</strong>How you connect & belong</div>
+      </div>
+      <a href="#audit" class="hero-card-cta">Get Your Free Score →</a>
+      <p class="hero-card-note">10 minutes · No email required to start</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span>🎓</span> Certified Nutrition Coach</div>
+  <div class="trust-item"><span>🌿</span> Holistic 4-Pillar Approach</div>
+  <div class="trust-item"><span>✨</span> 1:1 & Group Coaching</div>
+  <div class="trust-item"><span>📍</span> Coaching Worldwide via Zoom</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <div class="about-image-placeholder">🌿</div>
+        <div class="about-badge">
+          <span class="about-badge-num">4</span>
+          <span class="about-badge-label">Pillars of Health</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">I'm Wes Powers — and I built this method because <em>one pillar was never enough</em></h2>
+        <p>I spent years watching people try to fix their health through food alone — and struggle. Not because they weren't motivated, but because nutrition is only one piece of a much bigger puzzle.</p>
+        <p>The Powers Pillar Method was born from the understanding that how you sleep, how you move, and who you surround yourself with are just as powerful as what you eat. When all four pillars are strong, everything changes.</p>
+        <p>As a certified nutrition coach, I work with clients who are done with short-term fixes and ready to build a life that feels genuinely, sustainably healthy.</p>
+        <div class="about-credentials">
+          <span class="cred-tag">Certified Nutrition Coach</span>
+          <span class="cred-tag">Holistic Health</span>
+          <span class="cred-tag">Behavior Change</span>
+          <span class="cred-tag">Sleep Optimization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="section-inner">
+    <div class="pillars-intro">
+      <div>
+        <div class="section-label">The Method</div>
+        <h2 class="section-title">Four pillars.<br><em>One whole life.</em></h2>
+      </div>
+      <p class="section-body">Most coaching addresses one dimension of health in isolation. The Powers Pillar Method treats all four as a single, interconnected system — because when one pillar weakens, all four are affected.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card" data-num="01">
+        <span class="pillar-emoji">🥗</span>
+        <div class="pillar-sub">Pillar One</div>
+        <h3>Nutrition</h3>
+        <p>Food is information. We build a foundation of whole, nourishing eating that's sustainable, joyful, and completely free of diet culture.</p>
+        <ul>
+          <li>Anti-inflammatory eating</li>
+          <li>Gut health & digestion</li>
+          <li>Blood sugar balance</li>
+          <li>Intuitive eating practices</li>
+        </ul>
+      </div>
+      <div class="pillar-card" data-num="02">
+        <span class="pillar-emoji">🌿</span>
+        <div class="pillar-sub">Pillar Two</div>
+        <h3>Lifestyle</h3>
+        <p>Your daily structure shapes your health as much as your diet. We design routines that support your body, reduce stress, and create energy.</p>
+        <ul>
+          <li>Movement & exercise design</li>
+          <li>Stress regulation tools</li>
+          <li>Morning & evening rituals</li>
+          <li>Environmental optimization</li>
+        </ul>
+      </div>
+      <div class="pillar-card" data-num="03">
+        <span class="pillar-emoji">🌙</span>
+        <div class="pillar-sub">Pillar Three</div>
+        <h3>Sleep</h3>
+        <p>Sleep is the most underrated wellness tool available — and it's free. Poor sleep quietly undermines every other health effort you make.</p>
+        <ul>
+          <li>Sleep hygiene & environment</li>
+          <li>Circadian rhythm alignment</li>
+          <li>Wind-down protocol</li>
+          <li>Nervous system regulation</li>
+        </ul>
+      </div>
+      <div class="pillar-card" data-num="04">
+        <span class="pillar-emoji">🤝</span>
+        <div class="pillar-sub">Pillar Four</div>
+        <h3>Relationships</h3>
+        <p>Connection is a biological need — not a luxury. Your social environment and the relationship you have with yourself directly affect your health.</p>
+        <ul>
+          <li>Community & belonging</li>
+          <li>Boundaries & social eating</li>
+          <li>Self-relationship practices</li>
+          <li>Support system building</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT CTA -->
+<section id="audit" style="padding:0">
+  <div id="audit" style="background:var(--forest); padding:80px 48px;">
+    <div class="audit-inner">
+      <div class="audit-text">
+        <div class="section-label" style="color:var(--sage-lt)">Free Assessment</div>
+        <h2>Discover your <em>health score</em> across all four pillars</h2>
+        <p>The 4-Pillar Health Audit takes 10 minutes and shows you exactly where you're thriving — and where you're holding yourself back. It's the first step every client takes before we work together.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Download Free Audit →</a>
+      </div>
+      <div class="audit-form-card">
+        <h4>Get your free audit + a personal note from me</h4>
+        <p>Drop your email and I'll send it directly to you.</p>
+        <div class="form-field">
+          <input type="text" placeholder="First name">
+        </div>
+        <div class="form-field">
+          <input type="email" placeholder="Email address">
+        </div>
+        <button class="form-submit">Send Me the Audit →</button>
+        <p class="form-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-inner">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label" style="text-align:center">Work With Me</div>
+      <h2 class="section-title">Choose your <em>level of support</em></h2>
+      <p class="section-body" style="margin:0 auto">Every package includes the full 4-pillar framework. The difference is in how closely we work together.</p>
+    </div>
+    <div class="packages-grid">
+      <!-- Foundation -->
+      <div class="package-card">
+        <div class="package-name">Foundation</div>
+        <h3>Foundation</h3>
+        <div class="package-price">
+          <span class="package-amount">$297</span>
+          <span class="package-period"> / month</span>
+        </div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>2 × 45-min coaching calls/month</li>
+          <li>Personalized 4-pillar plan</li>
+          <li>Email support (48hr response)</li>
+          <li>Monthly progress tracker</li>
+          <li>Resource library access</li>
+        </ul>
+        <a href="#" class="pkg-btn">Get Started →</a>
+      </div>
+
+      <!-- Transformation (featured) -->
+      <div class="package-card featured">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-name">Transformation</div>
+        <h3>Transformation</h3>
+        <div class="package-price">
+          <span class="package-amount">$497</span>
+          <span class="package-period"> / month</span>
+        </div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>4 × 45-min coaching calls/month</li>
+          <li>Full 4-pillar assessment + roadmap</li>
+          <li>Weekly voice note check-ins</li>
+          <li>Meal, sleep & habit templates</li>
+          <li>Private messaging support</li>
+          <li>Full resource library</li>
+        </ul>
+        <a href="#" class="pkg-btn">Book Discovery Call →</a>
+      </div>
+
+      <!-- VIP Total Reset -->
+      <div class="package-card">
+        <div class="package-name">VIP Total Reset</div>
+        <h3>Total Reset</h3>
+        <div class="package-price">
+          <span class="package-amount">$997</span>
+          <span class="package-period"> / month</span>
+        </div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>Weekly calls + unlimited messaging</li>
+          <li>Full 4-pillar deep dive protocol</li>
+          <li>Custom meal plans + lifestyle design</li>
+          <li>Priority scheduling & response</li>
+          <li>Full resource library</li>
+          <li>Done-with-you accountability</li>
+        </ul>
+        <a href="#" class="pkg-btn">Apply for VIP →</a>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:32px; font-size:14px; color:var(--muted);">Not sure which is right for you? <a href="#" style="color:var(--sage); text-decoration:underline;">Book a free 20-min discovery call</a> and we'll figure it out together.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-label" style="text-align:center">Client Results</div>
+    <h2 class="section-title" style="text-align:center; max-width:600px; margin:0 auto 16px">Real people. <em>Real transformation.</em></h2>
+    <p class="section-body" style="text-align:center; margin:0 auto 0; max-width:480px">These are placeholder testimonials — replace with your own client stories when you're ready.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <span class="testimonial-stars">★★★★★</span>
+        <p class="testimonial-quote">I'd tried every diet program out there. Working through all four pillars together was the first time I understood why nothing else had stuck — and finally made lasting changes.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">🌸</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-detail">12-week Transformation client</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-stars">★★★★★</span>
+        <p class="testimonial-quote">I came for the nutrition advice and stayed for everything else. The sleep and relationships work completely changed how I show up in my life. I didn't expect that.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">🌿</div>
+          <div>
+            <div class="testimonial-name">Jamie L.</div>
+            <div class="testimonial-detail">VIP Total Reset client</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-stars">★★★★★</span>
+        <p class="testimonial-quote">Three months in and I have more energy than I've had in years. The 4-pillar approach feels less like a program and more like a total life upgrade. Worth every penny.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">☀️</div>
+          <div>
+            <div class="testimonial-name">Chris R.</div>
+            <div class="testimonial-detail">Foundation client, month 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="faq-grid">
+      <div>
+        <div class="section-label">Questions</div>
+        <h2 class="section-title" style="margin-bottom:40px">Everything you <em>want to know</em></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">How is this different from other nutrition coaching?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Most nutrition coaching focuses exclusively on food. The Powers Pillar Method addresses all four systems — nutrition, lifestyle, sleep, and relationships — because they're all interconnected. Improving one without addressing the others only gets you so far.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">How long does the program last?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">The core program is 12 weeks, which gives us enough time to move through all four pillars and then integrate them. Many clients continue after 12 weeks either with ongoing monthly support or by joining a group coaching cohort.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">Do I need to follow a specific diet?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">No restrictive diets, no calorie counting unless you want it. The Powers Pillar Method is rooted in whole-food, anti-inflammatory eating and a healthy relationship with food — not deprivation or rigid rules.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">Where do sessions take place?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">All coaching sessions are held via Zoom, so you can work with me from anywhere in the world. Sessions are typically 45 minutes and scheduled at a time that works for your timezone.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">What if I've already tried everything?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">That's exactly who I work best with. If you've tried nutrition programs, fitness plans, or wellness apps and nothing has stuck — it's likely because you were only addressing one pillar. The four-pillar approach reveals the gaps that have been holding you back.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-q-text">Is there a payment plan?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Yes. All packages are billed monthly so there's no large upfront commitment. I also offer flexible arrangements for longer commitments — ask about this on your discovery call.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="faq-cta-card">
+          <h3>Still have questions? <em>Let's talk.</em></h3>
+          <p>Book a free 20-minute discovery call. No pressure, no pitch — just a conversation about where you are and whether the Powers Pillar Method is the right fit for you.</p>
+          <a href="#" class="faq-cta-btn">Book Free Discovery Call →</a>
+          <p class="faq-cta-note">20 minutes · Free · No obligation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>The Powers Pillar Method</h3>
+      <p>Holistic nutrition coaching across four interconnected pillars — because lasting health is never just about food.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#about">About</a>
+      <a href="#pillars">The Method</a>
+      <a href="#packages">Packages</a>
+      <a href="#testimonials">Results</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Free Health Audit</a>
+      <a href="#">Book a Call</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Powers Pillar Method · All rights reserved</span>
+    <span>Nutrition coaching · Not medical advice</span>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pillar-card, .package-card, .testimonial-card, .about-grid').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

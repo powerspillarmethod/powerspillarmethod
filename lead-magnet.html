@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Powers Pillar Method — Health Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #b8d4bb;
+    --sage-dark: #4a6b4e;
+    --cream: #faf6f0;
+    --warm: #f0e8d8;
+    --charcoal: #2c2c2c;
+    --muted: #6b6b6b;
+    --gold: #c9a84c;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: var(--sage-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    top: -200px; right: -200px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    bottom: -150px; left: -100px;
+  }
+
+  .cover-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage-light);
+    margin-bottom: 32px;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 64px);
+    color: #fff;
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+
+  .cover h1 em {
+    color: var(--sage-light);
+    font-style: italic;
+  }
+
+  .cover-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  .pillars-preview {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pillar-tag {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .section p {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  /* INTRO */
+  .intro {
+    background: var(--warm);
+    border-left: 4px solid var(--sage);
+    padding: 32px 36px;
+    border-radius: 0 12px 12px 0;
+    margin: 40px 0;
+  }
+
+  .intro p {
+    font-size: 17px;
+    color: var(--charcoal);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* PILLAR SECTIONS */
+  .pillar-block {
+    background: #fff;
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar-block::before {
+    content: attr(data-number);
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(122,158,126,0.07);
+    position: absolute;
+    right: 24px;
+    top: -10px;
+    line-height: 1;
+  }
+
+  .pillar-icon {
+    width: 52px; height: 52px;
+    background: var(--sage-dark);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .pillar-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .pillar-block .pillar-tagline {
+    color: var(--sage-dark);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .audit-questions {
+    list-style: none;
+    margin-top: 24px;
+  }
+
+  .audit-questions li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+    color: var(--charcoal);
+  }
+
+  .audit-questions li:last-child { border-bottom: none; }
+
+  .q-num {
+    width: 28px; height: 28px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sage-dark);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .score-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    margin-left: 44px;
+  }
+
+  .score-box {
+    width: 36px; height: 36px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .score-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 44px;
+    margin-top: 6px;
+  }
+
+  /* SCORING GUIDE */
+  .scoring-guide {
+    background: var(--sage-dark);
+    color: #fff;
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 32px;
+  }
+
+  .scoring-guide h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 32px;
+    color: #fff;
+  }
+
+  .score-tiers {
+    display: grid;
+    gap: 16px;
+  }
+
+  .score-tier {
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .tier-range {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--sage-light);
+    min-width: 80px;
+    font-weight: 700;
+  }
+
+  .tier-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .tier-info p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+    border-radius: 20px;
+    padding: 60px 48px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 60px;
+  }
+
+  .cta-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .cta-block p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    max-width: 420px;
+    margin: 0 auto 32px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--sage-dark);
+    padding: 16px 40px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  .cta-detail {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 16px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid #e8e8e8;
+  }
+
+  @media (max-width: 600px) {
+    .section { padding: 48px 24px; }
+    .pillar-block { padding: 32px 24px; }
+    .scoring-guide { padding: 32px 24px; }
+    .cta-block { padding: 40px 24px; }
+    .score-tier { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">The Powers Pillar Method</div>
+  <h1>The <em>Powers Pillar</em><br>Method Health Audit</h1>
+  <p class="cover-sub">Discover where you're thriving and where you're holding yourself back — in just 10 minutes.</p>
+  <div class="pillars-preview">
+    <span class="pillar-tag">🥗 Nutrition</span>
+    <span class="pillar-tag">🌿 Lifestyle</span>
+    <span class="pillar-tag">🌙 Sleep</span>
+    <span class="pillar-tag">🤝 Relationships</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="section-label">Welcome</div>
+  <h2>Why most health approaches fail</h2>
+  <p>Most coaching programs focus on one thing — usually food. But your health is the sum of four interconnected systems. When one is off, all four suffer.</p>
+  <p>This audit helps you score yourself honestly across all four pillars so you can see the full picture — and know exactly where to start.</p>
+  <div class="intro">
+    <p>"You can't out-eat poor sleep. You can't out-supplement chronic stress. And you can't build lasting wellness in isolation. True health is holistic — and this audit proves it."</p>
+  </div>
+  <p style="font-size:14px; color:var(--muted);">
+    <strong>How to use this guide:</strong> For each question, rate yourself honestly from 1–5. 
+    Add up your score per pillar, then use the Scoring Guide at the end to see your results.
+  </p>
+</div>
+
+<!-- PILLAR 1: NUTRITION -->
+<div class="section" style="padding-top:0">
+  <div class="pillar-block" data-number="1">
+    <div class="pillar-icon">🥗</div>
+    <p class="pillar-tagline">Pillar One</p>
+    <h3>Nutrition</h3>
+    <p style="color:var(--muted); font-size:15px;">Food is information for your body. This pillar looks at what, when, and how you eat — not just calories.</p>
+
+    <ul class="audit-questions">
+      <li>
+        <span class="q-num">1</span>
+        <div>
+          <div>I eat a variety of whole, minimally processed foods most days of the week.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">2</span>
+        <div>
+          <div>I eat regular meals and rarely skip or go long stretches without eating unintentionally.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">3</span>
+        <div>
+          <div>I drink enough water throughout the day and feel well-hydrated.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">4</span>
+        <div>
+          <div>I eat without guilt, restriction or emotional distress around food.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">5</span>
+        <div>
+          <div>My energy levels are stable throughout the day without relying on caffeine or sugar to function.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 1 Score: _____ / 25</p>
+  </div>
+
+  <!-- PILLAR 2: LIFESTYLE -->
+  <div class="pillar-block" data-number="2">
+    <div class="pillar-icon">🌿</div>
+    <p class="pillar-tagline">Pillar Two</p>
+    <h3>Lifestyle</h3>
+    <p style="color:var(--muted); font-size:15px;">How you move, manage stress, and structure your days shapes your health as much as what you eat.</p>
+
+    <ul class="audit-questions">
+      <li>
+        <span class="q-num">1</span>
+        <div>
+          <div>I move my body intentionally (exercise, walking, stretching) at least 4 days per week.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">2</span>
+        <div>
+          <div>I have effective ways to decompress and manage stress during the day.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">3</span>
+        <div>
+          <div>I spend meaningful time outdoors or in natural environments each week.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">4</span>
+        <div>
+          <div>My daily routine feels intentional — not reactive or chaotic.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">5</span>
+        <div>
+          <div>I limit screen time before bed and have consistent morning and evening routines.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 2 Score: _____ / 25</p>
+  </div>
+
+  <!-- PILLAR 3: SLEEP -->
+  <div class="pillar-block" data-number="3">
+    <div class="pillar-icon">🌙</div>
+    <p class="pillar-tagline">Pillar Three</p>
+    <h3>Sleep</h3>
+    <p style="color:var(--muted); font-size:15px;">Sleep is the most underrated health tool available — and it's free. Poor sleep undermines every other effort you make.</p>
+
+    <ul class="audit-questions">
+      <li>
+        <span class="q-num">1</span>
+        <div>
+          <div>I consistently get 7–9 hours of sleep most nights.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">2</span>
+        <div>
+          <div>I fall asleep within 20–30 minutes of going to bed without much difficulty.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">3</span>
+        <div>
+          <div>I wake up feeling rested, not relying on an alarm to drag myself awake.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">4</span>
+        <div>
+          <div>My bedroom is dark, quiet and cool — optimized for quality sleep.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">5</span>
+        <div>
+          <div>I have a wind-down routine that helps me transition from the day into sleep mode.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 3 Score: _____ / 25</p>
+  </div>
+
+  <!-- PILLAR 4: RELATIONSHIPS -->
+  <div class="pillar-block" data-number="4">
+    <div class="pillar-icon">🤝</div>
+    <p class="pillar-tagline">Pillar Four</p>
+    <h3>Relationships</h3>
+    <p style="color:var(--muted); font-size:15px;">Connection, community and boundaries are biological needs — not luxuries. This pillar is often the most overlooked.</p>
+
+    <ul class="audit-questions">
+      <li>
+        <span class="q-num">1</span>
+        <div>
+          <div>I have people in my life I can be genuinely open and vulnerable with.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">2</span>
+        <div>
+          <div>My social environment supports my health goals rather than undermining them.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">3</span>
+        <div>
+          <div>I feel comfortable setting limits with people who drain my energy.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">4</span>
+        <div>
+          <div>I invest in my relationship with myself — through rest, reflection, or personal growth.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+      <li>
+        <span class="q-num">5</span>
+        <div>
+          <div>I feel a sense of community and belonging — I don't feel isolated or unsupported.</div>
+          <div class="score-row">
+            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
+          </div>
+          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 4 Score: _____ / 25</p>
+  </div>
+
+  <!-- SCORING GUIDE -->
+  <div class="scoring-guide">
+    <h3>Your Results Guide</h3>
+    <p style="color:rgba(255,255,255,0.65); font-size:15px; margin-bottom:32px;">Add up all four pillar scores for your Total Score out of 100.</p>
+    <div class="score-tiers">
+      <div class="score-tier">
+        <div class="tier-range">80–100</div>
+        <div class="tier-info">
+          <h4>Thriving 🌟</h4>
+          <p>You've built strong foundations. A coach can help you optimize, deepen your practices, and protect your progress long-term.</p>
+        </div>
+      </div>
+      <div class="score-tier">
+        <div class="tier-range">60–79</div>
+        <div class="tier-info">
+          <h4>Building Momentum 🌱</h4>
+          <p>You're doing well in some areas but have clear gaps. Targeted coaching across your weaker pillars will create significant change.</p>
+        </div>
+      </div>
+      <div class="score-tier">
+        <div class="tier-range">40–59</div>
+        <div class="tier-info">
+          <h4>Ready for a Reset 🔄</h4>
+          <p>Multiple pillars need attention. You'll benefit enormously from structured support — the good news is you have a lot of room to grow fast.</p>
+        </div>
+      </div>
+      <div class="score-tier">
+        <div class="tier-range">0–39</div>
+        <div class="tier-info">
+          <h4>Time to Rebuild 🛠️</h4>
+          <p>You're likely feeling the effects across all areas of life. This is exactly where coaching creates the most dramatic transformation.</p>
+        </div>
+      </div>
+    </div>
+    <p style="color:rgba(255,255,255,0.5); font-size:13px; margin-top:32px; text-align:center;">Also note which pillar scored lowest — that's your starting point.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Ready to transform with The Powers Pillar Method?</h3>
+    <p>Book your free 20-minute Discovery Call and let's build your personalized Powers Pillar Method roadmap together.</p>
+    <a href="#" class="cta-btn">Book Your Free Discovery Call →</a>
+    <p class="cta-detail">No pressure. No sales pitch. Just clarity on your next step.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2025 · The Powers Pillar Method · All rights reserved</p>
+  <p style="margin-top:8px;">This guide is for educational purposes and does not constitute medical advice.</p>
+</div>
+
+</body>
+</html>

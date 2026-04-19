@@ -336,11 +336,28 @@ function showResults(){
     setTimeout(()=>{document.getElementById('bar-'+p.key).style.width=pctBar+'%';},300);
   });
  
-  // Save to localStorage so Wes can review
+  // Save to localStorage as backup
   const entry={name:userData.name,email:userData.email,total,scores,tier,date:new Date().toLocaleDateString()};
   const existing=JSON.parse(localStorage.getItem('auditResults')||'[]');
   existing.push(entry);
   localStorage.setItem('auditResults',JSON.stringify(existing));
+ 
+  // Send results to Wes via Formspree
+  fetch('https://formspree.io/f/mnjlvrde', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      name: userData.name,
+      email: userData.email,
+      total_score: total + ' / 100',
+      tier: tier,
+      nutrition: scores.Nutrition + ' / 25',
+      lifestyle: scores.Lifestyle + ' / 25',
+      sleep: scores.Sleep + ' / 25',
+      relationships: scores.Relationships + ' / 25',
+      message: userData.name + ' just completed the 4-Pillar Health Audit. Reply to ' + userData.email + ' to follow up.'
+    })
+  }).catch(err => console.log('Form submission error:', err));
  
   showScreen('screen-results');
   document.getElementById('progressBar').style.width='100%';

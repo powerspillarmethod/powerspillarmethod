@@ -3,696 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Powers Pillar Method — Health Audit</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>The 4-Pillar Health Audit — The Powers Pillar Method</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --sage: #7a9e7e;
-    --sage-light: #b8d4bb;
-    --sage-dark: #4a6b4e;
-    --cream: #faf6f0;
-    --warm: #f0e8d8;
-    --charcoal: #2c2c2c;
-    --muted: #6b6b6b;
-    --gold: #c9a84c;
+    --forest:#2c4a30;--sage:#5c7e5f;--sage-lt:#b8d4bb;--cream:#faf6ef;
+    --warm:#f2e9d8;--sand:#e8dcc8;--gold:#b8924a;--muted:#888;
+    --line:#e0d8cc;--charcoal:#2a2a2a;
   }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--charcoal);
-    line-height: 1.7;
-  }
-
-  /* COVER */
-  .cover {
-    min-height: 100vh;
-    background: var(--sage-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cover::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.08);
-    top: -200px; right: -200px;
-  }
-  .cover::after {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-    bottom: -150px; left: -100px;
-  }
-
-  .cover-badge {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sage-light);
-    margin-bottom: 32px;
-  }
-
-  .cover h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 6vw, 64px);
-    color: #fff;
-    line-height: 1.15;
-    max-width: 700px;
-    margin-bottom: 24px;
-  }
-
-  .cover h1 em {
-    color: var(--sage-light);
-    font-style: italic;
-  }
-
-  .cover-sub {
-    font-size: 17px;
-    color: rgba(255,255,255,0.7);
-    max-width: 480px;
-    margin-bottom: 48px;
-  }
-
-  .pillars-preview {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .pillar-tag {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    padding: 8px 20px;
-    border-radius: 100px;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-  }
-
-  /* SECTIONS */
-  .section {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 80px 40px;
-  }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-
-  .section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    line-height: 1.2;
-    margin-bottom: 24px;
-  }
-
-  .section p {
-    font-size: 16px;
-    color: var(--muted);
-    margin-bottom: 20px;
-    max-width: 600px;
-  }
-
-  /* INTRO */
-  .intro {
-    background: var(--warm);
-    border-left: 4px solid var(--sage);
-    padding: 32px 36px;
-    border-radius: 0 12px 12px 0;
-    margin: 40px 0;
-  }
-
-  .intro p {
-    font-size: 17px;
-    color: var(--charcoal);
-    font-style: italic;
-    margin: 0;
-  }
-
-  /* PILLAR SECTIONS */
-  .pillar-block {
-    background: #fff;
-    border-radius: 20px;
-    padding: 48px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pillar-block::before {
-    content: attr(data-number);
-    font-family: 'Playfair Display', serif;
-    font-size: 120px;
-    font-weight: 700;
-    color: rgba(122,158,126,0.07);
-    position: absolute;
-    right: 24px;
-    top: -10px;
-    line-height: 1;
-  }
-
-  .pillar-icon {
-    width: 52px; height: 52px;
-    background: var(--sage-dark);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  .pillar-block h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    margin-bottom: 8px;
-  }
-
-  .pillar-block .pillar-tagline {
-    color: var(--sage-dark);
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-
-  .audit-questions {
-    list-style: none;
-    margin-top: 24px;
-  }
-
-  .audit-questions li {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 14px 0;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 15px;
-    color: var(--charcoal);
-  }
-
-  .audit-questions li:last-child { border-bottom: none; }
-
-  .q-num {
-    width: 28px; height: 28px;
-    background: var(--sage-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--sage-dark);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .score-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    margin-left: 44px;
-  }
-
-  .score-box {
-    width: 36px; height: 36px;
-    border: 1.5px solid #ddd;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .score-label {
-    font-size: 11px;
-    color: var(--muted);
-    margin-left: 44px;
-    margin-top: 6px;
-  }
-
-  /* SCORING GUIDE */
-  .scoring-guide {
-    background: var(--sage-dark);
-    color: #fff;
-    border-radius: 20px;
-    padding: 48px;
-    margin-bottom: 32px;
-  }
-
-  .scoring-guide h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    margin-bottom: 32px;
-    color: #fff;
-  }
-
-  .score-tiers {
-    display: grid;
-    gap: 16px;
-  }
-
-  .score-tier {
-    background: rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 20px 24px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .tier-range {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    color: var(--sage-light);
-    min-width: 80px;
-    font-weight: 700;
-  }
-
-  .tier-info h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .tier-info p {
-    font-size: 14px;
-    color: rgba(255,255,255,0.65);
-    margin: 0;
-  }
-
-  /* CTA */
-  .cta-block {
-    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
-    border-radius: 20px;
-    padding: 60px 48px;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 60px;
-  }
-
-  .cta-block h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-
-  .cta-block p {
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-    max-width: 420px;
-    margin: 0 auto 32px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    background: #fff;
-    color: var(--sage-dark);
-    padding: 16px 40px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-  }
-
-  .cta-detail {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    margin-top: 16px;
-  }
-
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 13px;
-    color: var(--muted);
-    border-top: 1px solid #e8e8e8;
-  }
-
-  @media (max-width: 600px) {
-    .section { padding: 48px 24px; }
-    .pillar-block { padding: 32px 24px; }
-    .scoring-guide { padding: 32px 24px; }
-    .cta-block { padding: 40px 24px; }
-    .score-tier { flex-direction: column; gap: 8px; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--charcoal); min-height:100vh; }
+  .progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--sage),var(--gold)); transition:width 0.4s ease; z-index:999; }
+  .screen { display:none; min-height:100vh; animation:fadeIn 0.4s ease; }
+  .screen.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+ 
+  /* WELCOME */
+  .welcome { display:grid; grid-template-columns:1fr 1fr; min-height:100vh; }
+  .welcome-left { background:var(--forest); padding:80px 64px; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; }
+  .welcome-left::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; border:1px solid rgba(255,255,255,0.05); bottom:-150px; left:-100px; }
+  .welcome-eyebrow { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--sage-lt); margin-bottom:20px; font-weight:600; }
+  .welcome-left h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,56px); font-weight:400; color:#fff; line-height:1.1; margin-bottom:20px; }
+  .welcome-left h1 em { color:var(--sage-lt); font-style:italic; }
+  .welcome-left p { font-size:16px; color:rgba(255,255,255,0.6); line-height:1.7; font-weight:300; max-width:400px; margin-bottom:40px; }
+  .pillar-list { display:flex; flex-direction:column; gap:12px; }
+  .pillar-item { display:flex; align-items:center; gap:14px; color:rgba(255,255,255,0.8); font-size:14px; }
+  .pillar-dot { width:36px; height:36px; background:rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .welcome-right { background:var(--warm); padding:80px 64px; display:flex; flex-direction:column; justify-content:center; }
+  .welcome-right h2 { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; margin-bottom:8px; color:var(--forest); }
+  .welcome-right .sub { font-size:14px; color:var(--muted); margin-bottom:36px; font-weight:300; }
+  .what-to-expect { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px; }
+  .expect-item { background:#fff; border-radius:10px; padding:14px 16px; font-size:13px; color:#555; line-height:1.5; }
+  .expect-item strong { display:block; color:var(--forest); font-size:12px; margin-bottom:3px; }
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--sage); font-weight:600; margin-bottom:8px; }
+  .form-group input { width:100%; background:#fff; border:1.5px solid var(--sand); border-radius:10px; padding:14px 16px; font-size:15px; color:var(--charcoal); font-family:'Jost',sans-serif; outline:none; transition:border-color 0.2s; }
+  .form-group input:focus { border-color:var(--sage); }
+  .start-btn { width:100%; background:var(--forest); color:#fff; border:none; border-radius:12px; padding:16px; font-size:15px; font-weight:600; font-family:'Jost',sans-serif; cursor:pointer; margin-top:8px; transition:background 0.2s; }
+  .start-btn:hover { background:var(--sage); }
+  .privacy-note { text-align:center; font-size:12px; color:var(--muted); margin-top:12px; }
+ 
+  /* QUESTIONS */
+  .question-screen { max-width:680px; margin:0 auto; padding:60px 24px 100px; }
+  .q-header { display:flex; align-items:center; gap:16px; margin-bottom:48px; }
+  .q-pillar-badge { display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:0.5px; }
+  .q-counter { font-size:13px; color:var(--muted); margin-left:auto; }
+  .q-text { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,3vw,32px); font-weight:400; line-height:1.3; margin-bottom:12px; color:var(--charcoal); }
+  .q-sub { font-size:14px; color:var(--muted); font-weight:300; margin-bottom:40px; line-height:1.6; }
+  .scale-options { display:flex; flex-direction:column; gap:12px; margin-bottom:48px; }
+  .scale-option { display:flex; align-items:center; gap:16px; padding:18px 22px; background:#fff; border:2px solid var(--line); border-radius:14px; cursor:pointer; transition:all 0.2s; }
+  .scale-option:hover { border-color:var(--sage); background:#f8fdf8; transform:translateX(4px); }
+  .scale-option.selected { border-color:var(--sage); background:#f0f8f1; }
+  .scale-option.selected .option-num { background:var(--sage); color:#fff; }
+  .option-num { width:36px; height:36px; border-radius:50%; background:var(--warm); color:var(--sage); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; flex-shrink:0; transition:all 0.2s; }
+  .option-label { font-size:15px; color:var(--charcoal); font-weight:400; }
+  .option-desc { font-size:12px; color:var(--muted); margin-top:2px; font-weight:300; }
+  .q-nav { display:flex; gap:12px; position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:680px; padding:16px 24px; background:rgba(250,246,239,0.95); backdrop-filter:blur(8px); border-top:1px solid var(--line); }
+  .btn-back { padding:14px 28px; background:transparent; border:1.5px solid var(--line); border-radius:10px; font-size:14px; font-family:'Jost',sans-serif; color:var(--muted); cursor:pointer; transition:all 0.2s; }
+  .btn-back:hover { border-color:var(--sage); color:var(--sage); }
+  .btn-next { flex:1; padding:14px; background:var(--forest); border:none; border-radius:10px; font-size:15px; font-weight:600; font-family:'Jost',sans-serif; color:#fff; cursor:pointer; transition:all 0.2s; opacity:0.4; pointer-events:none; }
+  .btn-next.enabled { opacity:1; pointer-events:all; }
+  .btn-next.enabled:hover { background:var(--sage); }
+ 
+  /* RESULTS */
+  .results-screen { max-width:760px; margin:0 auto; padding:60px 24px 80px; }
+  .results-header { text-align:center; margin-bottom:48px; }
+  .results-header .eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--sage); font-weight:600; margin-bottom:12px; }
+  .results-header h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,5vw,52px); font-weight:400; margin-bottom:8px; line-height:1.1; }
+  .results-header h1 em { color:var(--sage); font-style:italic; }
+  .results-header p { font-size:16px; color:var(--muted); font-weight:300; }
+  .total-score-card { border-radius:20px; padding:48px; text-align:center; margin-bottom:32px; color:#fff; position:relative; overflow:hidden; }
+  .total-score-card::before { content:''; position:absolute; width:300px; height:300px; border-radius:50%; border:1px solid rgba(255,255,255,0.06); top:-100px; right:-80px; }
+  .score-circle { width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,0.15); border:3px solid rgba(255,255,255,0.3); display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 24px; }
+  .score-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; line-height:1; }
+  .score-denom { font-size:14px; opacity:0.6; }
+  .score-tier-label { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600; margin-bottom:8px; }
+  .score-tier-desc { font-size:15px; opacity:0.75; font-weight:300; max-width:420px; margin:0 auto; line-height:1.6; }
+  .pillar-breakdown { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px; }
+  .pillar-result-card { background:#fff; border-radius:16px; padding:28px 24px; position:relative; overflow:hidden; }
+  .pillar-result-card::after { content:attr(data-emoji); position:absolute; font-size:80px; right:-10px; bottom:-15px; opacity:0.06; line-height:1; }
+  .pr-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; margin-bottom:6px; }
+  .pr-name { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; margin-bottom:16px; color:var(--charcoal); }
+  .pr-bar-bg { height:8px; background:var(--warm); border-radius:100px; margin-bottom:8px; overflow:hidden; }
+  .pr-bar-fill { height:100%; border-radius:100px; transition:width 1s ease; }
+  .pr-score-row { display:flex; justify-content:space-between; font-size:13px; }
+  .pr-score-val { font-weight:700; }
+  .pr-insight { font-size:13px; color:var(--muted); line-height:1.5; margin-top:10px; font-weight:300; }
+  .results-cta { background:var(--forest); border-radius:20px; padding:48px 40px; text-align:center; color:#fff; margin-bottom:32px; }
+  .results-cta h3 { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; margin-bottom:12px; }
+  .results-cta h3 em { color:var(--sage-lt); font-style:italic; }
+  .results-cta p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.7; font-weight:300; max-width:440px; margin:0 auto 32px; }
+  .cta-book-btn { display:inline-block; background:var(--gold); color:#fff; padding:16px 40px; border-radius:12px; font-size:15px; font-weight:600; text-decoration:none; transition:background 0.2s; font-family:'Jost',sans-serif; border:none; cursor:pointer; }
+  .cta-book-btn:hover { background:#a07a38; }
+  .cta-note { font-size:12px; color:rgba(255,255,255,0.35); margin-top:12px; }
+  .share-row { display:flex; gap:12px; justify-content:center; }
+  .share-btn { padding:12px 24px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Jost',sans-serif; border:1.5px solid var(--line); background:#fff; color:var(--charcoal); transition:all 0.2s; }
+  .share-btn:hover { border-color:var(--sage); color:var(--sage); }
+ 
+  @media(max-width:700px){
+    .welcome{grid-template-columns:1fr}
+    .welcome-left{padding:60px 28px 40px}
+    .welcome-right{padding:40px 28px 60px}
+    .what-to-expect{grid-template-columns:1fr}
+    .pillar-breakdown{grid-template-columns:1fr}
+    .question-screen{padding:40px 20px 100px}
+    .results-screen{padding:40px 20px 60px}
+    .total-score-card{padding:32px 24px}
+    .results-cta{padding:32px 24px}
   }
 </style>
 </head>
 <body>
-
-<!-- COVER -->
-<div class="cover">
-  <div class="cover-badge">The Powers Pillar Method</div>
-  <h1>The <em>Powers Pillar</em><br>Method Health Audit</h1>
-  <p class="cover-sub">Discover where you're thriving and where you're holding yourself back — in just 10 minutes.</p>
-  <div class="pillars-preview">
-    <span class="pillar-tag">🥗 Nutrition</span>
-    <span class="pillar-tag">🌿 Lifestyle</span>
-    <span class="pillar-tag">🌙 Sleep</span>
-    <span class="pillar-tag">🤝 Relationships</span>
-  </div>
-</div>
-
-<!-- INTRO -->
-<div class="section">
-  <div class="section-label">Welcome</div>
-  <h2>Why most health approaches fail</h2>
-  <p>Most coaching programs focus on one thing — usually food. But your health is the sum of four interconnected systems. When one is off, all four suffer.</p>
-  <p>This audit helps you score yourself honestly across all four pillars so you can see the full picture — and know exactly where to start.</p>
-  <div class="intro">
-    <p>"You can't out-eat poor sleep. You can't out-supplement chronic stress. And you can't build lasting wellness in isolation. True health is holistic — and this audit proves it."</p>
-  </div>
-  <p style="font-size:14px; color:var(--muted);">
-    <strong>How to use this guide:</strong> For each question, rate yourself honestly from 1–5. 
-    Add up your score per pillar, then use the Scoring Guide at the end to see your results.
-  </p>
-</div>
-
-<!-- PILLAR 1: NUTRITION -->
-<div class="section" style="padding-top:0">
-  <div class="pillar-block" data-number="1">
-    <div class="pillar-icon">🥗</div>
-    <p class="pillar-tagline">Pillar One</p>
-    <h3>Nutrition</h3>
-    <p style="color:var(--muted); font-size:15px;">Food is information for your body. This pillar looks at what, when, and how you eat — not just calories.</p>
-
-    <ul class="audit-questions">
-      <li>
-        <span class="q-num">1</span>
-        <div>
-          <div>I eat a variety of whole, minimally processed foods most days of the week.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">2</span>
-        <div>
-          <div>I eat regular meals and rarely skip or go long stretches without eating unintentionally.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">3</span>
-        <div>
-          <div>I drink enough water throughout the day and feel well-hydrated.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">4</span>
-        <div>
-          <div>I eat without guilt, restriction or emotional distress around food.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">5</span>
-        <div>
-          <div>My energy levels are stable throughout the day without relying on caffeine or sugar to function.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-    </ul>
-    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 1 Score: _____ / 25</p>
-  </div>
-
-  <!-- PILLAR 2: LIFESTYLE -->
-  <div class="pillar-block" data-number="2">
-    <div class="pillar-icon">🌿</div>
-    <p class="pillar-tagline">Pillar Two</p>
-    <h3>Lifestyle</h3>
-    <p style="color:var(--muted); font-size:15px;">How you move, manage stress, and structure your days shapes your health as much as what you eat.</p>
-
-    <ul class="audit-questions">
-      <li>
-        <span class="q-num">1</span>
-        <div>
-          <div>I move my body intentionally (exercise, walking, stretching) at least 4 days per week.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">2</span>
-        <div>
-          <div>I have effective ways to decompress and manage stress during the day.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">3</span>
-        <div>
-          <div>I spend meaningful time outdoors or in natural environments each week.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">4</span>
-        <div>
-          <div>My daily routine feels intentional — not reactive or chaotic.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">5</span>
-        <div>
-          <div>I limit screen time before bed and have consistent morning and evening routines.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-    </ul>
-    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 2 Score: _____ / 25</p>
-  </div>
-
-  <!-- PILLAR 3: SLEEP -->
-  <div class="pillar-block" data-number="3">
-    <div class="pillar-icon">🌙</div>
-    <p class="pillar-tagline">Pillar Three</p>
-    <h3>Sleep</h3>
-    <p style="color:var(--muted); font-size:15px;">Sleep is the most underrated health tool available — and it's free. Poor sleep undermines every other effort you make.</p>
-
-    <ul class="audit-questions">
-      <li>
-        <span class="q-num">1</span>
-        <div>
-          <div>I consistently get 7–9 hours of sleep most nights.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">2</span>
-        <div>
-          <div>I fall asleep within 20–30 minutes of going to bed without much difficulty.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">3</span>
-        <div>
-          <div>I wake up feeling rested, not relying on an alarm to drag myself awake.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">4</span>
-        <div>
-          <div>My bedroom is dark, quiet and cool — optimized for quality sleep.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">5</span>
-        <div>
-          <div>I have a wind-down routine that helps me transition from the day into sleep mode.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-    </ul>
-    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 3 Score: _____ / 25</p>
-  </div>
-
-  <!-- PILLAR 4: RELATIONSHIPS -->
-  <div class="pillar-block" data-number="4">
-    <div class="pillar-icon">🤝</div>
-    <p class="pillar-tagline">Pillar Four</p>
-    <h3>Relationships</h3>
-    <p style="color:var(--muted); font-size:15px;">Connection, community and boundaries are biological needs — not luxuries. This pillar is often the most overlooked.</p>
-
-    <ul class="audit-questions">
-      <li>
-        <span class="q-num">1</span>
-        <div>
-          <div>I have people in my life I can be genuinely open and vulnerable with.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">2</span>
-        <div>
-          <div>My social environment supports my health goals rather than undermining them.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">3</span>
-        <div>
-          <div>I feel comfortable setting limits with people who drain my energy.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">4</span>
-        <div>
-          <div>I invest in my relationship with myself — through rest, reflection, or personal growth.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-      <li>
-        <span class="q-num">5</span>
-        <div>
-          <div>I feel a sense of community and belonging — I don't feel isolated or unsupported.</div>
-          <div class="score-row">
-            <div class="score-box">1</div><div class="score-box">2</div><div class="score-box">3</div><div class="score-box">4</div><div class="score-box">5</div>
-          </div>
-          <div class="score-label">1 = Rarely &nbsp;&nbsp; 5 = Almost always</div>
-        </div>
-      </li>
-    </ul>
-    <p style="margin-top:24px; font-size:14px; color:var(--sage-dark); font-weight:600;">Pillar 4 Score: _____ / 25</p>
-  </div>
-
-  <!-- SCORING GUIDE -->
-  <div class="scoring-guide">
-    <h3>Your Results Guide</h3>
-    <p style="color:rgba(255,255,255,0.65); font-size:15px; margin-bottom:32px;">Add up all four pillar scores for your Total Score out of 100.</p>
-    <div class="score-tiers">
-      <div class="score-tier">
-        <div class="tier-range">80–100</div>
-        <div class="tier-info">
-          <h4>Thriving 🌟</h4>
-          <p>You've built strong foundations. A coach can help you optimize, deepen your practices, and protect your progress long-term.</p>
-        </div>
-      </div>
-      <div class="score-tier">
-        <div class="tier-range">60–79</div>
-        <div class="tier-info">
-          <h4>Building Momentum 🌱</h4>
-          <p>You're doing well in some areas but have clear gaps. Targeted coaching across your weaker pillars will create significant change.</p>
-        </div>
-      </div>
-      <div class="score-tier">
-        <div class="tier-range">40–59</div>
-        <div class="tier-info">
-          <h4>Ready for a Reset 🔄</h4>
-          <p>Multiple pillars need attention. You'll benefit enormously from structured support — the good news is you have a lot of room to grow fast.</p>
-        </div>
-      </div>
-      <div class="score-tier">
-        <div class="tier-range">0–39</div>
-        <div class="tier-info">
-          <h4>Time to Rebuild 🛠️</h4>
-          <p>You're likely feeling the effects across all areas of life. This is exactly where coaching creates the most dramatic transformation.</p>
-        </div>
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+ 
+<!-- WELCOME -->
+<div class="screen active" id="screen-welcome">
+  <div class="welcome">
+    <div class="welcome-left">
+      <div class="welcome-eyebrow">The Powers Pillar Method</div>
+      <h1>The <em>4-Pillar</em><br>Health Audit</h1>
+      <p>Discover your score across all four dimensions of health — and see exactly where to focus first.</p>
+      <div class="pillar-list">
+        <div class="pillar-item"><div class="pillar-dot">🥗</div><span>Nutrition — How you fuel your body</span></div>
+        <div class="pillar-item"><div class="pillar-dot">🌿</div><span>Lifestyle — How you move & manage stress</span></div>
+        <div class="pillar-item"><div class="pillar-dot">🌙</div><span>Sleep — How deeply you recover</span></div>
+        <div class="pillar-item"><div class="pillar-dot">🤝</div><span>Relationships — How you connect & belong</span></div>
       </div>
     </div>
-    <p style="color:rgba(255,255,255,0.5); font-size:13px; margin-top:32px; text-align:center;">Also note which pillar scored lowest — that's your starting point.</p>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-block">
-    <h3>Ready to transform with The Powers Pillar Method?</h3>
-    <p>Book your free 20-minute Discovery Call and let's build your personalized Powers Pillar Method roadmap together.</p>
-    <a href="#" class="cta-btn">Book Your Free Discovery Call →</a>
-    <p class="cta-detail">No pressure. No sales pitch. Just clarity on your next step.</p>
+    <div class="welcome-right">
+      <h2>Get Your Free Score</h2>
+      <p class="sub">20 questions · 10 minutes · Instant results</p>
+      <div class="what-to-expect">
+        <div class="expect-item"><strong>What you'll get</strong>A personalized score across all 4 pillars with tailored insights</div>
+        <div class="expect-item"><strong>How it works</strong>Rate yourself honestly 1–5. No right or wrong answers.</div>
+      </div>
+      <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="Your first name" /></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="emailAddress" placeholder="your@email.com" /></div>
+      <button class="start-btn" onclick="startAudit()">Start My Free Audit →</button>
+      <p class="privacy-note">🔒 Your info is private. Wes will personally review your results.</p>
+    </div>
   </div>
 </div>
-
-<div class="footer">
-  <p>© 2025 · The Powers Pillar Method · All rights reserved</p>
-  <p style="margin-top:8px;">This guide is for educational purposes and does not constitute medical advice.</p>
+ 
+<div id="questionContainer"></div>
+ 
+<!-- RESULTS -->
+<div class="screen" id="screen-results">
+  <div class="results-screen">
+    <div class="results-header">
+      <div class="eyebrow">Your Results</div>
+      <h1 id="resultsName">Your <em>4-Pillar Score</em></h1>
+      <p>Here's where you stand across all four pillars of health.</p>
+    </div>
+    <div class="total-score-card" id="totalScoreCard">
+      <div class="score-circle">
+        <div class="score-num" id="totalScoreNum">0</div>
+        <div class="score-denom">/ 100</div>
+      </div>
+      <div class="score-tier-label" id="scoreTierLabel">Calculating...</div>
+      <div class="score-tier-desc" id="scoreTierDesc"></div>
+    </div>
+    <div class="pillar-breakdown" id="pillarBreakdown"></div>
+    <div class="results-cta">
+      <h3>Ready to strengthen <em>every pillar?</em></h3>
+      <p>Book a free 20-minute discovery call with Wes and get a personalized plan built around your exact scores.</p>
+      <a href="https://calendly.com/powerspillarmethod" class="cta-book-btn">Book Your Free Discovery Call →</a>
+      <p class="cta-note">Free · 20 minutes · No obligation</p>
+    </div>
+    <div class="share-row">
+      <button class="share-btn" onclick="retakeAudit()">↩ Retake Audit</button>
+      <button class="share-btn" onclick="window.location.href='index.html'">← Back to Site</button>
+    </div>
+  </div>
 </div>
-
+ 
+<script>
+const userData={name:'',email:''};
+const answers={};
+const questions=[
+  {id:'n1',pillar:'Nutrition',emoji:'🥗',color:'#4a7c59',bg:'#e8f4ec',text:'I eat a variety of whole, minimally processed foods most days of the week.',sub:'Think about your typical week — fruits, vegetables, whole grains, quality proteins.'},
+  {id:'n2',pillar:'Nutrition',emoji:'🥗',color:'#4a7c59',bg:'#e8f4ec',text:'I eat regular meals and rarely skip or go long stretches without eating unintentionally.',sub:'Consider whether you have a consistent eating rhythm throughout the day.'},
+  {id:'n3',pillar:'Nutrition',emoji:'🥗',color:'#4a7c59',bg:'#e8f4ec',text:'I drink enough water throughout the day and feel well-hydrated.',sub:'Aim is around 8 glasses daily — note if you rely on coffee or tea to feel okay.'},
+  {id:'n4',pillar:'Nutrition',emoji:'🥗',color:'#4a7c59',bg:'#e8f4ec',text:'I eat without guilt, restriction, or emotional distress around food.',sub:'This includes emotional eating, bingeing, or feeling shame after meals.'},
+  {id:'n5',pillar:'Nutrition',emoji:'🥗',color:'#4a7c59',bg:'#e8f4ec',text:'My energy levels are stable throughout the day without relying on caffeine or sugar.',sub:'Notice whether you crash mid-afternoon or need constant stimulants to function.'},
+  {id:'l1',pillar:'Lifestyle',emoji:'🌿',color:'#7a6b3e',bg:'#f4f0e0',text:'I move my body intentionally at least 4 days per week.',sub:'Any form counts — walking, gym, yoga, dancing. Intentional is the key word.'},
+  {id:'l2',pillar:'Lifestyle',emoji:'🌿',color:'#7a6b3e',bg:'#f4f0e0',text:'I have effective ways to decompress and manage stress during the day.',sub:'Think about what you actually do when stress hits — helpful or not.'},
+  {id:'l3',pillar:'Lifestyle',emoji:'🌿',color:'#7a6b3e',bg:'#f4f0e0',text:'I spend meaningful time outdoors or in natural environments each week.',sub:'Even short walks outside count. Think about your average week.'},
+  {id:'l4',pillar:'Lifestyle',emoji:'🌿',color:'#7a6b3e',bg:'#f4f0e0',text:'My daily routine feels intentional — not reactive or chaotic.',sub:'Do you feel in control of your days, or do they happen to you?'},
+  {id:'l5',pillar:'Lifestyle',emoji:'🌿',color:'#7a6b3e',bg:'#f4f0e0',text:'I limit screen time before bed and have consistent morning and evening routines.',sub:'Think about the hour before sleep and the first 30 minutes after waking.'},
+  {id:'s1',pillar:'Sleep',emoji:'🌙',color:'#3e5a7a',bg:'#e0eaf4',text:'I consistently get 7 to 9 hours of sleep most nights.',sub:'Be honest about your actual average — not your ideal or occasional good nights.'},
+  {id:'s2',pillar:'Sleep',emoji:'🌙',color:'#3e5a7a',bg:'#e0eaf4',text:'I fall asleep within 20 to 30 minutes of going to bed without much difficulty.',sub:'Think about how long it typically takes from lights out to actually sleeping.'},
+  {id:'s3',pillar:'Sleep',emoji:'🌙',color:'#3e5a7a',bg:'#e0eaf4',text:'I wake up feeling rested, not needing an alarm to drag myself awake.',sub:'Consider how you feel in the first 30 minutes after waking most days.'},
+  {id:'s4',pillar:'Sleep',emoji:'🌙',color:'#3e5a7a',bg:'#e0eaf4',text:'My bedroom is dark, quiet, and cool — optimized for quality sleep.',sub:'Think about light, noise, temperature, and phone presence in your room.'},
+  {id:'s5',pillar:'Sleep',emoji:'🌙',color:'#3e5a7a',bg:'#e0eaf4',text:'I have a wind-down routine that helps me transition from the day into sleep.',sub:'A routine could be 10 minutes or 60 — consistency matters more than length.'},
+  {id:'r1',pillar:'Relationships',emoji:'🤝',color:'#6b3e6b',bg:'#f0e0f0',text:'I have people in my life I can be genuinely open and vulnerable with.',sub:'Not surface-level connection — real, honest, two-way relationships.'},
+  {id:'r2',pillar:'Relationships',emoji:'🤝',color:'#6b3e6b',bg:'#f0e0f0',text:'My social environment supports my health goals rather than undermining them.',sub:'Think about the people around food, exercise, alcohol, and lifestyle choices.'},
+  {id:'r3',pillar:'Relationships',emoji:'🤝',color:'#6b3e6b',bg:'#f0e0f0',text:'I feel comfortable setting limits with people who drain my energy.',sub:'Boundaries as a health practice — protecting your energy and wellbeing.'},
+  {id:'r4',pillar:'Relationships',emoji:'🤝',color:'#6b3e6b',bg:'#f0e0f0',text:'I invest in my relationship with myself through rest, reflection, or personal growth.',sub:'Self-care beyond bubble baths: genuine self-respect and self-compassion.'},
+  {id:'r5',pillar:'Relationships',emoji:'🤝',color:'#6b3e6b',bg:'#f0e0f0',text:'I feel a sense of community and belonging and do not feel isolated or unsupported.',sub:'You can be surrounded by people and still feel lonely. Be honest here.'},
+];
+const scaleLabels=[
+  {val:1,label:'Rarely / Never',desc:'This is not part of my current life'},
+  {val:2,label:'Sometimes',desc:'Occasionally, but not consistently'},
+  {val:3,label:'About half the time',desc:'I do this, but inconsistently'},
+  {val:4,label:'Often',desc:'This is mostly true for me'},
+  {val:5,label:'Almost Always',desc:'This is a consistent part of my life'},
+];
+const pillarInsights={
+  Nutrition:{high:'Your nutrition foundation is strong. Focus on refining and deepening your practices.',mid:'You have solid basics in some areas. Targeted support can close the gaps quickly.',low:'Nutrition is a significant growth area — and often the fastest to improve with the right guidance.'},
+  Lifestyle:{high:'Your daily structure supports your health well. Small optimizations will compound over time.',mid:'Your lifestyle has good elements but lacks consistency. Routine-building will be transformative.',low:'Your daily structure needs a reset. Small changes here affect everything.'},
+  Sleep:{high:'You are recovering well. Protecting this pillar is key as other areas of life get busier.',mid:'Your sleep is okay but not optimal. Even small improvements here ripple through every other pillar.',low:'Sleep is your biggest opportunity. Fixing this pillar will dramatically improve your energy, mood, and nutrition.'},
+  Relationships:{high:'Your social foundation is strong. Community and connection are fueling your health journey.',mid:'You have connection but gaps exist. Building deeper support systems will accelerate your progress.',low:'This is often the most overlooked pillar — and the most transformative to work on.'},
+};
+let currentQ=0;
+ 
+function buildQuestions(){
+  const container=document.getElementById('questionContainer');
+  container.innerHTML='';
+  questions.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='screen';
+    div.id='screen-q-'+i;
+    div.innerHTML=`
+      <div class="question-screen">
+        <div class="q-header">
+          <div class="q-pillar-badge" style="background:${q.bg};color:${q.color}">${q.emoji} ${q.pillar}</div>
+          <div class="q-counter">Question ${i+1} of ${questions.length}</div>
+        </div>
+        <div class="q-text">${q.text}</div>
+        <div class="q-sub">${q.sub}</div>
+        <div class="scale-options" id="options-${i}">
+          ${scaleLabels.map(opt=>`
+            <div class="scale-option" onclick="selectAnswer(${i},${opt.val},'${q.id}')" id="opt-${i}-${opt.val}">
+              <div class="option-num">${opt.val}</div>
+              <div><div class="option-label">${opt.label}</div><div class="option-desc">${opt.desc}</div></div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="q-nav">
+        ${i>0?`<button class="btn-back" onclick="goBack(${i})">← Back</button>`:''}
+        <button class="btn-next" id="next-${i}" onclick="goNext(${i})">${i===questions.length-1?'See My Results →':'Next →'}</button>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+ 
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  updateProgress();
+}
+ 
+function updateProgress(){
+  const pct=((currentQ+1)/(questions.length+2))*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+}
+ 
+function startAudit(){
+  const name=document.getElementById('firstName').value.trim();
+  const email=document.getElementById('emailAddress').value.trim();
+  if(!name||!email){alert('Please enter your name and email to get started!');return;}
+  if(!email.includes('@')){alert('Please enter a valid email address.');return;}
+  userData.name=name;userData.email=email;
+  currentQ=0;
+  buildQuestions();
+  showScreen('screen-q-0');
+}
+ 
+function selectAnswer(qIndex,value,qId){
+  answers[qId]=value;
+  document.querySelectorAll('#options-'+qIndex+' .scale-option').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('opt-'+qIndex+'-'+value).classList.add('selected');
+  document.getElementById('next-'+qIndex).classList.add('enabled');
+}
+ 
+function goNext(qIndex){
+  if(!answers[questions[qIndex].id])return;
+  currentQ=qIndex+1;
+  if(qIndex===questions.length-1){showResults();}
+  else{showScreen('screen-q-'+(qIndex+1));}
+}
+ 
+function goBack(qIndex){
+  currentQ=qIndex-1;
+  showScreen('screen-q-'+(qIndex-1));
+}
+ 
+function calcPillarScore(prefix){
+  return Object.keys(answers).filter(k=>k.startsWith(prefix)).reduce((sum,k)=>sum+answers[k],0);
+}
+ 
+function showResults(){
+  const scores={Nutrition:calcPillarScore('n'),Lifestyle:calcPillarScore('l'),Sleep:calcPillarScore('s'),Relationships:calcPillarScore('r')};
+  const total=Object.values(scores).reduce((a,b)=>a+b,0);
+  document.getElementById('totalScoreNum').textContent=total;
+  document.getElementById('resultsName').innerHTML=userData.name+"'s <em>4-Pillar Score</em>";
+  let tier,desc,bg;
+  if(total>=80){tier='Thriving 🌟';bg='#2c4a30';desc='You have built strong foundations across all four pillars. Coaching helps you optimize, deepen, and protect your progress long-term.';}
+  else if(total>=60){tier='Building Momentum 🌱';bg='#4a7c59';desc='You are doing well in some areas but have clear gaps. Targeted coaching will create significant change quickly.';}
+  else if(total>=40){tier='Ready for a Reset 🔄';bg='#7a6b3e';desc='Multiple pillars need attention. You have a lot of room to grow fast — and that is exciting.';}
+  else{tier='Time to Rebuild 🛠️';bg='#5a3a3a';desc='You are likely feeling the effects across all areas of life. This is exactly where coaching creates the most dramatic transformation.';}
+  document.getElementById('scoreTierLabel').textContent=tier;
+  document.getElementById('scoreTierDesc').textContent=desc;
+  document.getElementById('totalScoreCard').style.background=bg;
+ 
+  const pillarConfig=[
+    {key:'Nutrition',emoji:'🥗',color:'#4a7c59'},
+    {key:'Lifestyle',emoji:'🌿',color:'#7a6b3e'},
+    {key:'Sleep',emoji:'🌙',color:'#3e5a7a'},
+    {key:'Relationships',emoji:'🤝',color:'#6b3e6b'},
+  ];
+  const breakdown=document.getElementById('pillarBreakdown');
+  breakdown.innerHTML='';
+  pillarConfig.forEach(p=>{
+    const score=scores[p.key];
+    const pctBar=(score/25)*100;
+    const insightKey=score>=18?'high':score>=12?'mid':'low';
+    const card=document.createElement('div');
+    card.className='pillar-result-card';
+    card.setAttribute('data-emoji',p.emoji);
+    card.innerHTML=`
+      <div class="pr-label" style="color:${p.color}">${p.emoji} ${p.key}</div>
+      <div class="pr-name">${score} / 25</div>
+      <div class="pr-bar-bg"><div class="pr-bar-fill" style="width:0%;background:${p.color}" id="bar-${p.key}"></div></div>
+      <div class="pr-score-row">
+        <span style="color:${p.color};font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700">${insightKey==='high'?'Strong':insightKey==='mid'?'Developing':'Needs Focus'}</span>
+        <span class="pr-score-val" style="color:${p.color}">${Math.round(pctBar)}%</span>
+      </div>
+      <div class="pr-insight">${pillarInsights[p.key][insightKey]}</div>`;
+    breakdown.appendChild(card);
+    setTimeout(()=>{document.getElementById('bar-'+p.key).style.width=pctBar+'%';},300);
+  });
+ 
+  // Save to localStorage so Wes can review
+  const entry={name:userData.name,email:userData.email,total,scores,tier,date:new Date().toLocaleDateString()};
+  const existing=JSON.parse(localStorage.getItem('auditResults')||'[]');
+  existing.push(entry);
+  localStorage.setItem('auditResults',JSON.stringify(existing));
+ 
+  showScreen('screen-results');
+  document.getElementById('progressBar').style.width='100%';
+}
+ 
+function retakeAudit(){
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  document.getElementById('questionContainer').innerHTML='';
+  document.getElementById('firstName').value='';
+  document.getElementById('emailAddress').value='';
+  showScreen('screen-welcome');
+  document.getElementById('progressBar').style.width='0%';
+}
+</script>
 </body>
 </html>
+ 

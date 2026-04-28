@@ -17,7 +17,7 @@
   .screen { display:none; min-height:100vh; animation:fadeIn 0.4s ease; }
   .screen.active { display:block; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
- 
+
   /* WELCOME */
   .welcome { display:grid; grid-template-columns:1fr 1fr; min-height:100vh; }
   .welcome-left { background:var(--forest); padding:80px 64px; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; }
@@ -42,7 +42,7 @@
   .start-btn { width:100%; background:var(--forest); color:#fff; border:none; border-radius:12px; padding:16px; font-size:15px; font-weight:600; font-family:'Jost',sans-serif; cursor:pointer; margin-top:8px; transition:background 0.2s; }
   .start-btn:hover { background:var(--sage); }
   .privacy-note { text-align:center; font-size:12px; color:var(--muted); margin-top:12px; }
- 
+
   /* QUESTIONS */
   .question-screen { max-width:680px; margin:0 auto; padding:60px 24px 100px; }
   .q-header { display:flex; align-items:center; gap:16px; margin-bottom:48px; }
@@ -64,7 +64,7 @@
   .btn-next { flex:1; padding:14px; background:var(--forest); border:none; border-radius:10px; font-size:15px; font-weight:600; font-family:'Jost',sans-serif; color:#fff; cursor:pointer; transition:all 0.2s; opacity:0.4; pointer-events:none; }
   .btn-next.enabled { opacity:1; pointer-events:all; }
   .btn-next.enabled:hover { background:var(--sage); }
- 
+
   /* RESULTS */
   .results-screen { max-width:760px; margin:0 auto; padding:60px 24px 80px; }
   .results-header { text-align:center; margin-bottom:48px; }
@@ -99,7 +99,7 @@
   .share-row { display:flex; gap:12px; justify-content:center; }
   .share-btn { padding:12px 24px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Jost',sans-serif; border:1.5px solid var(--line); background:#fff; color:var(--charcoal); transition:all 0.2s; }
   .share-btn:hover { border-color:var(--sage); color:var(--sage); }
- 
+
   @media(max-width:700px){
     .welcome{grid-template-columns:1fr}
     .welcome-left{padding:60px 28px 40px}
@@ -115,7 +115,7 @@
 </head>
 <body>
 <div class="progress-bar" id="progressBar" style="width:0%"></div>
- 
+
 <!-- WELCOME -->
 <div class="screen active" id="screen-welcome">
   <div class="welcome">
@@ -144,9 +144,9 @@
     </div>
   </div>
 </div>
- 
+
 <div id="questionContainer"></div>
- 
+
 <!-- RESULTS -->
 <div class="screen" id="screen-results">
   <div class="results-screen">
@@ -176,7 +176,7 @@
     </div>
   </div>
 </div>
- 
+
 <script>
 const userData={name:'',email:''};
 const answers={};
@@ -216,7 +216,7 @@ const pillarInsights={
   Relationships:{high:'Your social foundation is strong. Community and connection are fueling your health journey.',mid:'You have connection but gaps exist. Building deeper support systems will accelerate your progress.',low:'This is often the most overlooked pillar — and the most transformative to work on.'},
 };
 let currentQ=0;
- 
+
 function buildQuestions(){
   const container=document.getElementById('questionContainer');
   container.innerHTML='';
@@ -247,19 +247,19 @@ function buildQuestions(){
     container.appendChild(div);
   });
 }
- 
+
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   updateProgress();
 }
- 
+
 function updateProgress(){
   const pct=((currentQ+1)/(questions.length+2))*100;
   document.getElementById('progressBar').style.width=pct+'%';
 }
- 
+
 function startAudit(){
   const name=document.getElementById('firstName').value.trim();
   const email=document.getElementById('emailAddress').value.trim();
@@ -270,30 +270,30 @@ function startAudit(){
   buildQuestions();
   showScreen('screen-q-0');
 }
- 
+
 function selectAnswer(qIndex,value,qId){
   answers[qId]=value;
   document.querySelectorAll('#options-'+qIndex+' .scale-option').forEach(el=>el.classList.remove('selected'));
   document.getElementById('opt-'+qIndex+'-'+value).classList.add('selected');
   document.getElementById('next-'+qIndex).classList.add('enabled');
 }
- 
+
 function goNext(qIndex){
   if(!answers[questions[qIndex].id])return;
   currentQ=qIndex+1;
   if(qIndex===questions.length-1){showResults();}
   else{showScreen('screen-q-'+(qIndex+1));}
 }
- 
+
 function goBack(qIndex){
   currentQ=qIndex-1;
   showScreen('screen-q-'+(qIndex-1));
 }
- 
+
 function calcPillarScore(prefix){
   return Object.keys(answers).filter(k=>k.startsWith(prefix)).reduce((sum,k)=>sum+answers[k],0);
 }
- 
+
 function showResults(){
   const scores={Nutrition:calcPillarScore('n'),Lifestyle:calcPillarScore('l'),Sleep:calcPillarScore('s'),Relationships:calcPillarScore('r')};
   const total=Object.values(scores).reduce((a,b)=>a+b,0);
@@ -307,7 +307,7 @@ function showResults(){
   document.getElementById('scoreTierLabel').textContent=tier;
   document.getElementById('scoreTierDesc').textContent=desc;
   document.getElementById('totalScoreCard').style.background=bg;
- 
+
   const pillarConfig=[
     {key:'Nutrition',emoji:'🥗',color:'#4a7c59'},
     {key:'Lifestyle',emoji:'🌿',color:'#7a6b3e'},
@@ -335,34 +335,79 @@ function showResults(){
     breakdown.appendChild(card);
     setTimeout(()=>{document.getElementById('bar-'+p.key).style.width=pctBar+'%';},300);
   });
- 
+
   // Save to localStorage as backup
   const entry={name:userData.name,email:userData.email,total,scores,tier,date:new Date().toLocaleDateString()};
   const existing=JSON.parse(localStorage.getItem('auditResults')||'[]');
   existing.push(entry);
   localStorage.setItem('auditResults',JSON.stringify(existing));
- 
-  // Send results to Wes via Formspree
+
+  // Build individual question answers for full insight
+  const scaleText = {1:'1 - Rarely/Never',2:'2 - Sometimes',3:'3 - About half the time',4:'4 - Often',5:'5 - Almost Always'};
+  const questionLabels = {
+    n1:'Q1 (Nutrition) Whole, minimally processed foods most days',
+    n2:'Q2 (Nutrition) Eats regular meals, rarely skips',
+    n3:'Q3 (Nutrition) Stays well-hydrated throughout the day',
+    n4:'Q4 (Nutrition) Eats without guilt or emotional distress',
+    n5:'Q5 (Nutrition) Stable energy without caffeine or sugar',
+    l1:'Q6 (Lifestyle) Moves body intentionally 4+ days/week',
+    l2:'Q7 (Lifestyle) Has effective stress decompression tools',
+    l3:'Q8 (Lifestyle) Spends meaningful time outdoors weekly',
+    l4:'Q9 (Lifestyle) Daily routine feels intentional, not reactive',
+    l5:'Q10 (Lifestyle) Limits screens before bed, consistent routines',
+    s1:'Q11 (Sleep) Consistently gets 7-9 hours most nights',
+    s2:'Q12 (Sleep) Falls asleep within 20-30 min without difficulty',
+    s3:'Q13 (Sleep) Wakes feeling rested without alarm',
+    s4:'Q14 (Sleep) Bedroom is dark, quiet, and cool',
+    s5:'Q15 (Sleep) Has a consistent wind-down routine',
+    r1:'Q16 (Relationships) Has people to be genuinely open with',
+    r2:'Q17 (Relationships) Social environment supports health goals',
+    r3:'Q18 (Relationships) Comfortable setting limits with draining people',
+    r4:'Q19 (Relationships) Invests in relationship with self',
+    r5:'Q20 (Relationships) Feels sense of community and belonging',
+  };
+
+  // Build the individual answers object
+  const individualAnswers = {};
+  Object.keys(questionLabels).forEach(key => {
+    individualAnswers[questionLabels[key]] = answers[key] ? scaleText[answers[key]] : 'Not answered';
+  });
+
+  // Find lowest scoring question per pillar
+  const lowestNutrition = ['n1','n2','n3','n4','n5'].reduce((a,b) => (answers[a]||5) < (answers[b]||5) ? a : b);
+  const lowestLifestyle = ['l1','l2','l3','l4','l5'].reduce((a,b) => (answers[a]||5) < (answers[b]||5) ? a : b);
+  const lowestSleep    = ['s1','s2','s3','s4','s5'].reduce((a,b) => (answers[a]||5) < (answers[b]||5) ? a : b);
+  const lowestRelation = ['r1','r2','r3','r4','r5'].reduce((a,b) => (answers[a]||5) < (answers[b]||5) ? a : b);
+
+  // Send full results to Wes via Formspree
   fetch('https://formspree.io/f/mnjlvrde', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      name: userData.name,
-      email: userData.email,
-      total_score: total + ' / 100',
-      tier: tier,
-      nutrition: scores.Nutrition + ' / 25',
-      lifestyle: scores.Lifestyle + ' / 25',
-      sleep: scores.Sleep + ' / 25',
-      relationships: scores.Relationships + ' / 25',
-      message: userData.name + ' just completed the 4-Pillar Health Audit. Reply to ' + userData.email + ' to follow up.'
+      '⭐ CLIENT NAME': userData.name,
+      '📧 CLIENT EMAIL': userData.email,
+      '📅 DATE': new Date().toLocaleDateString(),
+      '─── TOTAL SCORE ───': total + ' / 100  |  ' + tier,
+      '─── PILLAR SCORES ───': '',
+      '🥗 Nutrition Total': scores.Nutrition + ' / 25',
+      '🌿 Lifestyle Total': scores.Lifestyle + ' / 25',
+      '🌙 Sleep Total': scores.Sleep + ' / 25',
+      '🤝 Relationships Total': scores.Relationships + ' / 25',
+      '─── LOWEST QUESTION PER PILLAR ───': '',
+      '🥗 Nutrition Weakest': questionLabels[lowestNutrition] + ' → ' + scaleText[answers[lowestNutrition]],
+      '🌿 Lifestyle Weakest': questionLabels[lowestLifestyle] + ' → ' + scaleText[answers[lowestLifestyle]],
+      '🌙 Sleep Weakest': questionLabels[lowestSleep] + ' → ' + scaleText[answers[lowestSleep]],
+      '🤝 Relationships Weakest': questionLabels[lowestRelation] + ' → ' + scaleText[answers[lowestRelation]],
+      '─── ALL 20 ANSWERS ───': '',
+      ...individualAnswers,
+      '─── FOLLOW UP ───': 'Reply directly to ' + userData.email + ' to reach ' + userData.name,
     })
   }).catch(err => console.log('Form submission error:', err));
- 
+
   showScreen('screen-results');
   document.getElementById('progressBar').style.width='100%';
 }
- 
+
 function retakeAudit(){
   Object.keys(answers).forEach(k=>delete answers[k]);
   document.getElementById('questionContainer').innerHTML='';
@@ -374,4 +419,3 @@ function retakeAudit(){
 </script>
 </body>
 </html>
- 

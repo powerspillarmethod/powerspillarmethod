@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   :root {
     --forest:   #2c4a30;
     --sage:     #5c7e5f;
@@ -24,16 +24,16 @@
     --white:    #ffffff;
     --r: 8px;
   }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     font-family: 'Jost', sans-serif;
     background: var(--cream);
     color: var(--charcoal);
     overflow-x: hidden;
   }
- 
+
   /* ─── NOISE TEXTURE OVERLAY ─── */
   body::before {
     content: '';
@@ -43,7 +43,7 @@
     z-index: 1000;
     opacity: 0.4;
   }
- 
+
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -85,7 +85,7 @@
     font-size: 13px !important;
   }
   .nav-cta:hover { background: var(--sage) !important; }
- 
+
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
@@ -173,7 +173,7 @@
     transition: border-color 0.2s, color 0.2s;
   }
   .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
- 
+
   .hero-right {
     background: var(--warm);
     display: flex;
@@ -251,7 +251,7 @@
     color: var(--muted);
     margin-top: 10px;
   }
- 
+
   /* ─── TRUST BAR ─── */
   .trust-bar {
     background: var(--sand);
@@ -271,7 +271,7 @@
     font-weight: 500;
   }
   .trust-item span { font-size: 18px; }
- 
+
   /* ─── SECTIONS ─── */
   section { padding: 100px 48px; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
@@ -299,7 +299,7 @@
     max-width: 580px;
     font-weight: 300;
   }
- 
+
   /* ─── ABOUT ─── */
   #about { background: var(--white); }
   .about-grid {
@@ -314,26 +314,16 @@
   .about-image-placeholder {
     width: 100%;
     aspect-ratio: 3/4;
-    background: linear-gradient(160deg, var(--sage-lt) 0%, var(--warm) 60%, var(--sand) 100%);
     border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 64px;
-    position: relative;
     overflow: hidden;
+    position: relative;
   }
-  .about-image-placeholder::after {
-    content: 'Your photo here';
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    font-family: 'Jost', sans-serif;
-    color: rgba(0,0,0,0.3);
-    letter-spacing: 1px;
-    white-space: nowrap;
+  .about-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
   .about-badge {
     position: absolute;
@@ -381,7 +371,7 @@
     font-size: 13px;
     font-weight: 500;
   }
- 
+
   /* ─── PILLARS ─── */
   #pillars { background: var(--cream); }
   .pillars-intro {
@@ -464,7 +454,7 @@
     color: var(--sage-mid);
     font-size: 12px;
   }
- 
+
   /* ─── AUDIT CTA ─── */
   #audit {
     background: var(--forest);
@@ -549,7 +539,7 @@
     color: rgba(255,255,255,0.3);
     margin-top: 12px;
   }
- 
+
   /* ─── PACKAGES ─── */
   #packages { background: var(--warm); }
   .packages-grid {
@@ -663,7 +653,7 @@
     color: #fff;
   }
   .package-card.featured .pkg-btn:hover { background: #a07a38; border-color: #a07a38; }
- 
+
   /* ─── TESTIMONIALS ─── */
   #testimonials { background: var(--cream); }
   .testimonials-grid {
@@ -728,7 +718,7 @@
     margin-bottom: 12px;
     display: block;
   }
- 
+
   /* ─── FAQ ─── */
   #faq { background: var(--white); }
   .faq-grid {
@@ -832,7 +822,7 @@
     font-size: 12px;
     color: rgba(255,255,255,0.3);
   }
- 
+
   /* ─── FOOTER ─── */
   footer {
     background: var(--charcoal);
@@ -888,7 +878,7 @@
     flex-wrap: wrap;
     gap: 12px;
   }
- 
+
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -900,7 +890,7 @@
   .hero-sub     { animation-delay: 0.3s; }
   .hero-btns    { animation-delay: 0.4s; }
   .hero-card    { animation: fadeUp 0.7s ease 0.3s both; }
- 
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
@@ -923,7 +913,7 @@
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="https://calendly.com/powerspillarmethod" class="nav-logo">The Powers Pillar Method</a>
@@ -936,13 +926,13 @@
     <a href="https://calendly.com/powerspillarmethod" class="nav-cta">Book Discovery Call</a>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Holistic Nutrition Coaching</div>
     <h1>Health that works<br>across <em>all four</em><br>dimensions of you</h1>
-    <p class="hero-sub">The Powers Pillar Method is a whole-person coaching approach built on four pillars  Nutrition, Lifestyle, Sleep, and Relationships  because no single pillar builds a healthy life alone.</p>
+    <p class="hero-sub">The Powers Pillar Method is a whole-person coaching approach built on four pillars — Nutrition, Lifestyle, Sleep, and Relationships — because no single pillar builds a healthy life alone.</p>
     <div class="hero-btns">
       <a href="https://calendly.com/powerspillarmethod" class="btn-primary">Book a Free Discovery Call</a>
       <a href="#pillars" class="btn-ghost">Learn the Method</a>
@@ -973,7 +963,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><span>🎓</span> Certified Nutrition Coach</div>
@@ -981,13 +971,13 @@
   <div class="trust-item"><span>✨</span> 1:1 & Group Coaching</div>
   <div class="trust-item"><span>📍</span> Coaching Worldwide via Zoom</div>
 </div>
- 
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image-wrap">
-        <div class="about-image-placeholder">🌿</div>
+        <div class="about-image-placeholder"><img src="https://i.postimg.cc/xT7MD9cB/IMG-0557.jpg" alt="Wes Powers — The Powers Pillar Method" /></div>
         <div class="about-badge">
           <span class="about-badge-num">4</span>
           <span class="about-badge-label">Pillars of Health</span>
@@ -995,9 +985,9 @@
       </div>
       <div class="about-content">
         <div class="section-label">About Me</div>
-        <h2 class="section-title">I'm Wes Powers and I built this method because <em>one pillar was never enough</em></h2>
-        <p>I've spent the past 7 years observing others try to fix their health through food alone and struggle. Not because they weren't motivated, but because nutrition is only one piece of a much bigger puzzle.</p>
-        <p>The Powers Pillar Method was created from the research, testing and understanding that how you sleep, how you move, and who you surround yourself with are just as powerful as what you eat. When all four pillars are strong, everything changes.</p>
+        <h2 class="section-title">I'm Wes Powers — and I built this method because <em>one pillar was never enough</em></h2>
+        <p>I spent years watching people try to fix their health through food alone — and struggle. Not because they weren't motivated, but because nutrition is only one piece of a much bigger puzzle.</p>
+        <p>The Powers Pillar Method was born from the understanding that how you sleep, how you move, and who you surround yourself with are just as powerful as what you eat. When all four pillars are strong, everything changes.</p>
         <p>As a certified nutrition coach, I work with clients who are done with short-term fixes and ready to build a life that feels genuinely, sustainably healthy.</p>
         <div class="about-credentials">
           <span class="cred-tag">Certified Nutrition Coach</span>
@@ -1009,7 +999,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PILLARS -->
 <section id="pillars">
   <div class="section-inner">
@@ -1018,7 +1008,7 @@
         <div class="section-label">The Method</div>
         <h2 class="section-title">Four pillars.<br><em>One whole life.</em></h2>
       </div>
-      <p class="section-body">Most coaching addresses one dimension of health in isolation. The Powers Pillar Method treats all four as a single, interconnected system, because when one pillar weakens, all four are affected.</p>
+      <p class="section-body">Most coaching addresses one dimension of health in isolation. The Powers Pillar Method treats all four as a single, interconnected system — because when one pillar weakens, all four are affected.</p>
     </div>
     <div class="pillars-grid">
       <div class="pillar-card" data-num="01">
@@ -1049,7 +1039,7 @@
         <span class="pillar-emoji">🌙</span>
         <div class="pillar-sub">Pillar Three</div>
         <h3>Sleep</h3>
-        <p>Sleep is the most underrated wellness tool available and it's free. Poor sleep quietly undermines every other health effort you make.</p>
+        <p>Sleep is the most underrated wellness tool available — and it's free. Poor sleep quietly undermines every other health effort you make.</p>
         <ul>
           <li>Sleep hygiene & environment</li>
           <li>Circadian rhythm alignment</li>
@@ -1061,7 +1051,7 @@
         <span class="pillar-emoji">🤝</span>
         <div class="pillar-sub">Pillar Four</div>
         <h3>Relationships</h3>
-        <p>Connection is a biological need not a luxury. Your social environment and the relationship you have with yourself directly affect your health.</p>
+        <p>Connection is a biological need — not a luxury. Your social environment and the relationship you have with yourself directly affect your health.</p>
         <ul>
           <li>Community & belonging</li>
           <li>Boundaries & social eating</li>
@@ -1072,7 +1062,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- AUDIT CTA -->
 <section id="audit" style="padding:0">
   <div id="audit" style="background:var(--forest); padding:80px 48px;">
@@ -1080,7 +1070,7 @@
       <div class="audit-text">
         <div class="section-label" style="color:var(--sage-lt)">Free Assessment</div>
         <h2>Discover your <em>health score</em> across all four pillars</h2>
-        <p>The 4-Pillar Health Audit takes 10 minutes and shows you exactly where you're thriving and where you're holding yourself back. It's the first step every client takes before we work together.</p>
+        <p>The 4-Pillar Health Audit takes 10 minutes and shows you exactly where you're thriving — and where you're holding yourself back. It's the first step every client takes before we work together.</p>
         <a href="lead-magnet.html" class="btn-primary" style="display:inline-block">Download Free Audit →</a>
       </div>
       <div class="audit-form-card">
@@ -1098,7 +1088,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PACKAGES -->
 <section id="packages">
   <div class="section-inner">
@@ -1126,7 +1116,7 @@
         </ul>
         <a href="https://calendly.com/powerspillarmethod" class="pkg-btn">Get Started →</a>
       </div>
- 
+
       <!-- Transformation (featured) -->
       <div class="package-card featured">
         <div class="package-badge">Most Popular</div>
@@ -1147,7 +1137,7 @@
         </ul>
         <a href="https://calendly.com/powerspillarmethod" class="pkg-btn">Book Discovery Call →</a>
       </div>
- 
+
       <!-- VIP Total Reset -->
       <div class="package-card">
         <div class="package-name">VIP Total Reset</div>
@@ -1171,7 +1161,7 @@
     <p style="text-align:center; margin-top:32px; font-size:14px; color:var(--muted);">Not sure which is right for you? <a href="https://calendly.com/powerspillarmethod" style="color:var(--sage); text-decoration:underline;">Book a free 20-min discovery call</a> and we'll figure it out together.</p>
   </div>
 </section>
- 
+
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="section-inner">
@@ -1215,7 +1205,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- FAQ -->
 <section id="faq">
   <div class="section-inner">
@@ -1229,7 +1219,7 @@
               <span class="faq-q-text">How is this different from other nutrition coaching?</span>
               <span class="faq-toggle">+</span>
             </div>
-            <div class="faq-a">Most nutrition coaching focuses exclusively on food. The Powers Pillar Method addresses all four systems: nutrition, lifestyle, sleep, and relationships — because they're all interconnected. Improving one without addressing the others only gets you so far.</div>
+            <div class="faq-a">Most nutrition coaching focuses exclusively on food. The Powers Pillar Method addresses all four systems — nutrition, lifestyle, sleep, and relationships — because they're all interconnected. Improving one without addressing the others only gets you so far.</div>
           </div>
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">
@@ -1279,7 +1269,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1308,13 +1298,13 @@
     <span>Nutrition coaching · Not medical advice</span>
   </div>
 </footer>
- 
+
 <script>
   // Sticky nav
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
- 
+
   // FAQ accordion
   function toggleFaq(el) {
     const item = el.closest('.faq-item');
@@ -1322,7 +1312,7 @@
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
- 
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1332,7 +1322,7 @@
       }
     });
   }, { threshold: 0.1 });
- 
+
   document.querySelectorAll('.pillar-card, .package-card, .testimonial-card, .about-grid').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -1340,7 +1330,6 @@
     observer.observe(el);
   });
 </script>
- 
+
 </body>
 </html>
- 

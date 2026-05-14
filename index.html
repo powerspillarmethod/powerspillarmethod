@@ -3,1317 +3,998 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Powers Pillar Method | Holistic Nutrition Coaching</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Session 1 Coach Guide — The Powers Pillar Method</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --forest:   #2c4a30;
-    --sage:     #5c7e5f;
-    --sage-mid: #7a9e7e;
-    --sage-lt:  #b8d4bb;
-    --cream:    #faf6ef;
-    --warm:     #f2e9d8;
-    --sand:     #e8dcc8;
-    --bark:     #7a6248;
-    --gold:     #b8924a;
-    --gold-lt:  #e8d4a8;
-    --charcoal: #2a2a2a;
-    --muted:    #6a6a6a;
-    --white:    #ffffff;
-    --r: 8px;
+    --forest: #2c4a30; --sage: #5c7e5f; --sage-lt: #b8d4bb;
+    --cream: #faf6ef; --warm: #f2e9d8; --sand: #e8dcc8;
+    --gold: #b8924a; --muted: #888; --line: #e0d8cc; --charcoal: #2a2a2a;
   }
+  body { font-family: 'Jost', sans-serif; background: #1a2a1c; color: var(--charcoal); min-height: 100vh; }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--cream);
-    color: var(--charcoal);
-    overflow-x: hidden;
-  }
-
-  /* ─── NOISE TEXTURE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.4;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 900;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    transition: background 0.4s, box-shadow 0.4s;
-  }
-  nav.scrolled {
-    background: rgba(250,246,239,0.95);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--forest);
-    text-decoration: none;
-    letter-spacing: 0.3px;
-  }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    color: var(--charcoal);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-  .nav-links a:hover { opacity: 1; }
-  .nav-cta {
-    background: var(--forest) !important;
-    color: var(--white) !important;
-    padding: 10px 22px !important;
-    border-radius: 100px !important;
-    opacity: 1 !important;
-    font-size: 13px !important;
-  }
-  .nav-cta:hover { background: var(--sage) !important; }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
+  /* HEADER */
+  .app-header {
     background: var(--forest);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 140px 64px 80px 72px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-    bottom: -200px; left: -100px;
-  }
-  .hero-left::after {
-    content: '';
-    position: absolute;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.04);
-    top: 80px; right: -80px;
-  }
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sage-lt);
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 5vw, 68px);
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 28px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--sage-lt);
-  }
-  .hero-sub {
-    font-size: 16px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    max-width: 420px;
-    margin-bottom: 48px;
-    font-weight: 300;
-  }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--white);
-    padding: 15px 32px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { background: #a07a38; transform: translateY(-1px); }
-  .btn-ghost {
-    display: inline-block;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.8);
-    padding: 15px 32px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 400;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
-
-  .hero-right {
-    background: var(--warm);
+    padding: 20px 32px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 140px 64px 80px 48px;
-    position: relative;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .hero-card {
-    background: var(--white);
-    border-radius: 24px;
-    padding: 48px 40px;
-    box-shadow: 0 24px 64px rgba(44,74,48,0.12);
-    max-width: 380px;
-    width: 100%;
-    position: relative;
-  }
-  .hero-card::before {
-    content: '';
-    position: absolute;
-    top: -2px; left: 40px; right: 40px; height: 4px;
-    background: linear-gradient(90deg, var(--sage), var(--gold));
-    border-radius: 100px;
-  }
-  .hero-card-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .hero-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    line-height: 1.3;
-  }
-  .audit-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0ece4;
-  }
-  .audit-row:last-of-type { border-bottom: none; }
-  .audit-icon {
-    width: 38px; height: 38px;
-    background: var(--warm);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .audit-text { font-size: 14px; color: var(--muted); line-height: 1.4; }
-  .audit-text strong { color: var(--charcoal); display: block; font-size: 14px; }
-  .hero-card-cta {
-    display: block;
-    background: var(--forest);
-    color: #fff;
-    text-align: center;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 24px;
-    transition: background 0.2s;
-  }
-  .hero-card-cta:hover { background: var(--sage); }
-  .hero-card-note {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 10px;
-  }
-
-  /* ─── TRUST BAR ─── */
-  .trust-bar {
-    background: var(--sand);
-    padding: 24px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--bark);
-    font-weight: 500;
-  }
-  .trust-item span { font-size: 18px; }
-
-  /* ─── SECTIONS ─── */
-  section { padding: 100px 48px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 400;
-    line-height: 1.15;
-    margin-bottom: 20px;
-    color: var(--charcoal);
-  }
-  .section-title em { font-style: italic; color: var(--sage); }
-  .section-body {
-    font-size: 16px;
-    color: var(--muted);
-    line-height: 1.8;
-    max-width: 580px;
-    font-weight: 300;
-  }
-
-  /* ─── ABOUT ─── */
-  #about { background: var(--white); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .about-image-wrap {
-    position: relative;
-  }
-  .about-image-placeholder {
-    width: 100%;
-    aspect-ratio: 3/4;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-  }
-  .about-image-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
-  .about-badge {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    background: var(--forest);
-    color: #fff;
-    border-radius: 16px;
-    padding: 20px 24px;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(44,74,48,0.25);
-  }
-  .about-badge-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 38px;
-    font-weight: 600;
-    line-height: 1;
-    display: block;
-  }
-  .about-badge-label {
-    font-size: 11px;
-    color: var(--sage-lt);
-    letter-spacing: 1px;
-  }
-  .about-content { padding-right: 20px; }
-  .about-content .section-title { margin-bottom: 24px; }
-  .about-content p {
-    font-size: 16px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 20px;
-    font-weight: 300;
-  }
-  .about-credentials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 32px;
-  }
-  .cred-tag {
-    background: var(--warm);
-    color: var(--bark);
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  /* ─── PILLARS ─── */
-  #pillars { background: var(--cream); }
-  .pillars-intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: end;
-    margin-bottom: 64px;
-  }
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .pillar-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px 36px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: default;
-  }
-  .pillar-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(44,74,48,0.1);
-  }
-  .pillar-card::after {
-    content: attr(data-num);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 120px;
-    font-weight: 600;
-    color: rgba(92,126,95,0.05);
-    position: absolute;
-    right: 16px; bottom: -20px;
-    line-height: 1;
-    pointer-events: none;
-  }
-  .pillar-emoji {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: block;
-  }
-  .pillar-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--forest);
-  }
-  .pillar-card .pillar-sub {
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-  .pillar-card p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-  .pillar-card ul {
-    list-style: none;
-    margin-top: 16px;
-  }
-  .pillar-card ul li {
-    font-size: 14px;
-    color: var(--muted);
-    padding: 5px 0;
-    padding-left: 18px;
-    position: relative;
-  }
-  .pillar-card ul li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--sage-mid);
-    font-size: 12px;
-  }
-
-  /* ─── AUDIT CTA ─── */
-  #audit {
-    background: var(--forest);
-    padding: 80px 48px;
-  }
-  .audit-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .audit-text h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4vw, 48px);
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-  .audit-text h2 em { color: var(--sage-lt); font-style: italic; }
-  .audit-text p {
-    font-size: 16px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 32px;
-  }
-  .audit-form-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 36px;
-  }
-  .audit-form-card h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-  .audit-form-card p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 24px;
-  }
-  .form-field {
-    margin-bottom: 14px;
-  }
-  .form-field input {
-    width: 100%;
+  .header-left h1 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #fff; font-weight: 600; }
+  .header-left p { font-size: 11px; color: var(--sage-lt); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+  .timer-display {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 10px;
-    padding: 13px 16px;
-    font-size: 14px;
-    color: #fff;
-    font-family: 'Jost', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-field input::placeholder { color: rgba(255,255,255,0.35); }
-  .form-field input:focus { border-color: var(--sage-mid); }
-  .form-submit {
-    width: 100%;
-    background: var(--gold);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Jost', sans-serif;
-    cursor: pointer;
-    margin-top: 6px;
-    transition: background 0.2s;
-  }
-  .form-submit:hover { background: #a07a38; }
-  .form-note {
+    border-radius: 12px;
+    padding: 10px 20px;
     text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    margin-top: 12px;
+    cursor: pointer;
   }
+  .timer-time { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; font-weight: 600; line-height: 1; }
+  .timer-label { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+  .timer-btns { display: flex; gap: 8px; margin-top: 8px; }
+  .timer-btn { flex: 1; padding: 5px 10px; border: none; border-radius: 6px; font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 600; cursor: pointer; }
+  .timer-start { background: var(--sage); color: #fff; }
+  .timer-reset { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
 
-  /* ─── PACKAGES ─── */
-  #packages { background: var(--warm); }
-  .packages-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 60px;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
+  /* LAYOUT */
+  .app-body { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 70px); }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: #1e3a20;
+    padding: 24px 0;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255,255,255,0.06);
   }
-  .package-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px 32px;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .package-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 56px rgba(44,74,48,0.1);
-  }
-  .package-card.featured {
-    background: var(--forest);
-    color: #fff;
-  }
-  .package-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    padding: 5px 16px;
-    border-radius: 100px;
-    white-space: nowrap;
+    color: rgba(255,255,255,0.3);
+    padding: 0 20px 12px;
+    font-weight: 600;
   }
-  .package-name {
-    font-size: 12px;
+  .phase-group { margin-bottom: 8px; }
+  .phase-header {
+    padding: 8px 20px;
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .package-card.featured .package-name { color: var(--sage-lt); }
-  .package-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--forest);
-  }
-  .package-card.featured h3 { color: #fff; }
-  .package-price {
-    margin-bottom: 28px;
-  }
-  .package-amount {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 600;
-    color: var(--charcoal);
-    line-height: 1;
-  }
-  .package-card.featured .package-amount { color: #fff; }
-  .package-period {
-    font-size: 14px;
-    color: var(--muted);
-  }
-  .package-card.featured .package-period { color: rgba(255,255,255,0.5); }
-  .package-divider {
-    height: 1px;
-    background: #f0ece4;
-    margin-bottom: 24px;
-  }
-  .package-card.featured .package-divider { background: rgba(255,255,255,0.15); }
-  .package-features { list-style: none; margin-bottom: 32px; }
-  .package-features li {
-    display: flex;
-    gap: 12px;
-    font-size: 14px;
-    color: var(--muted);
-    padding: 7px 0;
-    line-height: 1.4;
-  }
-  .package-card.featured .package-features li { color: rgba(255,255,255,0.75); }
-  .package-features li::before {
-    content: '✓';
-    color: var(--sage);
+    color: var(--sage-lt);
     font-weight: 700;
+    opacity: 0.6;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.05); }
+  .nav-item.active { background: rgba(255,255,255,0.08); border-left-color: var(--sage); }
+  .nav-dot {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+  }
+  .nav-item-text { flex: 1; }
+  .nav-item-title { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; line-height: 1.3; }
+  .nav-item-time { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  .nav-check {
+    width: 18px; height: 18px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .nav-check.done { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+  /* MAIN CONTENT */
+  .main-content {
+    background: var(--cream);
+    overflow-y: auto;
+  }
+
+  .section-panel { display: none; padding: 40px 48px 60px; }
+  .section-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .panel-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid var(--sand);
+  }
+  .panel-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
     flex-shrink: 0;
   }
-  .package-card.featured .package-features li::before { color: var(--sage-lt); }
-  .pkg-btn {
-    display: block;
-    text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 14px;
+  .panel-title h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; line-height: 1.2; margin-bottom: 4px; }
+  .panel-title .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--warm);
+    color: var(--sage);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
     font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1.5px solid var(--forest);
-    color: var(--forest);
+    letter-spacing: 0.5px;
   }
-  .pkg-btn:hover { background: var(--forest); color: #fff; }
-  .package-card.featured .pkg-btn {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: #fff;
-  }
-  .package-card.featured .pkg-btn:hover { background: #a07a38; border-color: #a07a38; }
-
-  /* ─── TESTIMONIALS ─── */
-  #testimonials { background: var(--cream); }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    margin-top: 60px;
-  }
-  .testimonial-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 36px 32px;
-    position: relative;
-  }
-  .testimonial-card::before {
-    content: '"';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px;
-    color: var(--sage-lt);
-    position: absolute;
-    top: 12px; left: 24px;
-    line-height: 1;
-  }
-  .testimonial-quote {
+  .panel-intro {
+    background: var(--warm);
+    border-left: 3px solid var(--sage);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 28px;
     font-size: 15px;
-    color: var(--charcoal);
+    color: #555;
     line-height: 1.7;
-    margin-bottom: 24px;
-    margin-top: 32px;
     font-style: italic;
     font-weight: 300;
   }
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .testimonial-avatar {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: var(--warm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .testimonial-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--charcoal);
-  }
-  .testimonial-detail {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .testimonial-stars {
-    color: var(--gold);
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    display: block;
-  }
 
-  /* ─── FAQ ─── */
-  #faq { background: var(--white); }
-  .faq-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-top: 60px;
-    align-items: start;
-  }
-  .faq-list { }
-  .faq-item {
-    border-bottom: 1px solid #f0ece4;
-    padding: 24px 0;
-  }
-  .faq-item:first-child { padding-top: 0; }
-  .faq-q {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    cursor: pointer;
-    gap: 20px;
-  }
-  .faq-q-text {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--charcoal);
-    line-height: 1.4;
-  }
-  .faq-toggle {
-    width: 28px; height: 28px;
-    background: var(--warm);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+  /* CONTENT BLOCKS */
+  .content-block { margin-bottom: 32px; }
+  .block-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
     color: var(--sage);
-    flex-shrink: 0;
-    font-weight: 300;
-    line-height: 1;
-    transition: background 0.2s, transform 0.3s;
-    user-select: none;
-  }
-  .faq-item.open .faq-toggle {
-    background: var(--sage);
-    color: #fff;
-    transform: rotate(45deg);
-  }
-  .faq-a {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-  }
-  .faq-item.open .faq-a {
-    max-height: 200px;
-    padding-top: 14px;
-  }
-  .faq-cta-card {
-    background: var(--forest);
-    border-radius: 24px;
-    padding: 48px 40px;
-    color: #fff;
-    position: sticky;
-    top: 100px;
-  }
-  .faq-cta-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 400;
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-  .faq-cta-card h3 em { color: var(--sage-lt); font-style: italic; }
-  .faq-cta-card p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.7;
-    margin-bottom: 32px;
-    font-weight: 300;
-  }
-  .faq-cta-btn {
-    display: block;
-    background: var(--gold);
-    color: #fff;
-    text-align: center;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
+    font-weight: 700;
     margin-bottom: 14px;
-    transition: background 0.2s;
-  }
-  .faq-cta-btn:hover { background: #a07a38; }
-  .faq-cta-note {
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
   }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--charcoal);
-    padding: 56px 48px 40px;
-    color: rgba(255,255,255,0.5);
+  /* SCRIPT BLOCKS */
+  .script-block {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 14px;
+    border: 1px solid var(--line);
+    position: relative;
   }
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 48px;
+  .script-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
   }
-  .footer-brand h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 12px;
+  .tag-say { background: #e8f4ec; color: #4a7c59; }
+  .tag-ask { background: #e0eaf4; color: #3e5a7a; }
+  .tag-do  { background: #f4f0e0; color: #7a6b3e; }
+  .tag-note { background: #f0e0f0; color: #6b3e6b; }
+  .script-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--charcoal);
   }
-  .footer-brand p {
-    font-size: 14px;
-    line-height: 1.7;
-    max-width: 280px;
+  .script-text em { color: var(--sage); font-style: normal; font-weight: 600; }
+
+  /* RESPONSE GUIDE */
+  .response-guide {
+    background: var(--warm);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-top: 10px;
   }
-  .footer-col h4 {
-    font-size: 12px;
+  .response-guide .rg-label {
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 16px;
-    font-weight: 600;
-  }
-  .footer-col a {
-    display: block;
-    font-size: 14px;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
+    color: var(--gold);
+    font-weight: 700;
     margin-bottom: 10px;
-    transition: color 0.2s;
   }
-  .footer-col a:hover { color: #fff; }
-  .footer-bottom {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+  .response-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    flex-wrap: wrap;
     gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--sand);
+    font-size: 13px;
+  }
+  .response-item:last-child { border-bottom: none; }
+  .ri-trigger { color: var(--muted); min-width: 160px; font-style: italic; }
+  .ri-response { color: var(--charcoal); line-height: 1.5; }
+
+  /* QUESTION LIST */
+  .question-list { display: flex; flex-direction: column; gap: 12px; }
+  .question-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .question-item:hover { border-color: var(--sage); }
+  .question-item.asked { border-color: var(--sage); background: #f8fdf8; }
+  .question-item.asked .qi-check { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .qi-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--warm);
+    color: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .qi-content { flex: 1; }
+  .qi-q { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; line-height: 1.4; }
+  .qi-why { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.4; }
+  .qi-check {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--line);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
   }
 
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* NOTES AREA */
+  .notes-area {
+    width: 100%;
+    min-height: 120px;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    color: var(--charcoal);
+    resize: vertical;
+    outline: none;
+    line-height: 1.7;
+    transition: border-color 0.2s;
   }
-  .hero-left > * { animation: fadeUp 0.7s ease both; }
-  .hero-eyebrow { animation-delay: 0.1s; }
-  .hero h1      { animation-delay: 0.2s; }
-  .hero-sub     { animation-delay: 0.3s; }
-  .hero-btns    { animation-delay: 0.4s; }
-  .hero-card    { animation: fadeUp 0.7s ease 0.3s both; }
+  .notes-area:focus { border-color: var(--sage); }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 100px 32px 60px; }
-    .hero-right { padding: 48px 32px 60px; }
-    section { padding: 72px 24px; }
-    .about-grid,
-    .pillars-intro,
-    .audit-inner,
-    .faq-grid { grid-template-columns: 1fr; gap: 40px; }
-    .packages-grid,
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .pillars-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-    .trust-bar { gap: 24px; padding: 20px 24px; }
-    .about-badge { right: 10px; }
+  /* TIPS */
+  .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tip-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+  }
+  .tip-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+  .tip-title { font-size: 13px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
+  .tip-body { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* HOMEWORK CHECKLIST */
+  .hw-list { display: flex; flex-direction: column; gap: 10px; }
+  .hw-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .hw-item:hover { border-color: var(--sage); }
+  .hw-item.assigned { border-color: var(--sage); background: #f8fdf8; }
+  .hw-item.assigned .hw-check { background: var(--sage); border-color: var(--sage); color: #fff; }
+  .hw-check {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: transparent;
+    flex-shrink: 0; margin-top: 2px;
+    transition: all 0.2s;
+  }
+  .hw-text { font-size: 14px; color: var(--charcoal); line-height: 1.5; }
+  .hw-pillar { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* NAV BUTTONS */
+  .panel-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--sand);
+  }
+  .pnav-btn {
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1.5px solid var(--line);
+    background: #fff;
+    color: var(--charcoal);
+  }
+  .pnav-btn:hover { border-color: var(--sage); color: var(--sage); }
+  .pnav-next {
+    flex: 1;
+    background: var(--forest);
+    color: #fff;
+    border: none;
+  }
+  .pnav-next:hover { background: var(--sage); color: #fff; }
+
+  @media (max-width: 768px) {
+    .app-body { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .section-panel { padding: 28px 20px 48px; }
+    .tip-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="https://calendly.com/powerspillarmethod" class="nav-logo">The Powers Pillar Method</a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#pillars">The Method</a>
-    <a href="#packages">Work With Me</a>
-    <a href="#testimonials">Results</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://calendly.com/powerspillarmethod" class="nav-cta">Book Discovery Call</a>
+<!-- HEADER -->
+<div class="app-header">
+  <div class="header-left">
+    <h1>Session 1 Coach Guide</h1>
+    <p>The Powers Pillar Method · Week 1</p>
   </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Holistic Nutrition Coaching</div>
-    <h1>Health that works<br>across <em>all four</em><br>dimensions of you</h1>
-    <p class="hero-sub">The Powers Pillar Method is a whole-person coaching approach built on four pillars — Nutrition, Lifestyle, Sleep, and Relationships — because no single pillar builds a healthy life alone.</p>
-    <div class="hero-btns">
-      <a href="https://calendly.com/powerspillarmethod" class="btn-primary">Book a Free Discovery Call</a>
-      <a href="#pillars" class="btn-ghost">Learn the Method</a>
+  <div class="timer-display" title="Click to start/pause">
+    <div class="timer-time" id="timerDisplay">45:00</div>
+    <div class="timer-label">Session Timer</div>
+    <div class="timer-btns">
+      <button class="timer-btn timer-start" onclick="toggleTimer()">▶ Start</button>
+      <button class="timer-btn timer-reset" onclick="resetTimer()">↺ Reset</button>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-card">
-      <div class="hero-card-label">Free Resource</div>
-      <h3>Take the 4-Pillar Health Audit</h3>
-      <div class="audit-row">
-        <div class="audit-icon">🥗</div>
-        <div class="audit-text"><strong>Nutrition</strong>How you fuel your body</div>
-      </div>
-      <div class="audit-row">
-        <div class="audit-icon">🌿</div>
-        <div class="audit-text"><strong>Lifestyle</strong>How you move & manage stress</div>
-      </div>
-      <div class="audit-row">
-        <div class="audit-icon">🌙</div>
-        <div class="audit-text"><strong>Sleep</strong>How deeply you recover</div>
-      </div>
-      <div class="audit-row">
-        <div class="audit-icon">🤝</div>
-        <div class="audit-text"><strong>Relationships</strong>How you connect & belong</div>
-      </div>
-      <a href="lead-magnet.html" class="hero-card-cta">Get Your Free Score →</a>
-      <p class="hero-card-note">10 minutes · No email required to start</p>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item"><span>🎓</span> Certified Nutrition Coach</div>
-  <div class="trust-item"><span>🌿</span> Holistic 4-Pillar Approach</div>
-  <div class="trust-item"><span>✨</span> 1:1 & Group Coaching</div>
-  <div class="trust-item"><span>📍</span> Coaching Worldwide via Zoom</div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-image-wrap">
-        <div class="about-image-placeholder"><img src="https://i.postimg.cc/xT7MD9cB/IMG-0557.jpg" alt="Wes Powers — The Powers Pillar Method" /></div>
-        <div class="about-badge">
-          <span class="about-badge-num">4</span>
-          <span class="about-badge-label">Pillars of Health</span>
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-label">Session Flow</div>
+
+    <div class="phase-group">
+      <div class="phase-header">Opening</div>
+      <div class="nav-item active" onclick="showPanel('welcome')" id="nav-welcome">
+        <div class="nav-dot" style="background:#2c4a30;color:#b8d4bb">1</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Welcome & Set the Tone</div>
+          <div class="nav-item-time">⏱ 0–5 min</div>
         </div>
+        <div class="nav-check" id="check-welcome" onclick="toggleCheck(event,'welcome')"></div>
       </div>
-      <div class="about-content">
-        <div class="section-label">About Me</div>
-        <h2 class="section-title">I'm Wes Powers and I built this method because <em>one pillar was never enough</em></h2>
-        <p>I have spent years watching people try to fix their health through food alone and struggle. Not because they weren't motivated, but because nutrition is only one piece of a much bigger puzzle.</p>
-        <p>The Powers Pillar Method was born from the understanding that how you sleep, how you move, and who you surround yourself with are just as powerful as what you eat. When all four pillars are strong, everything changes.</p>
-        <p>As a certified nutrition coach, I work with clients who are done with short-term fixes and ready to build a life that feels genuinely, sustainably healthy.</p>
-        <div class="about-credentials">
-          <span class="cred-tag">Certified Nutrition Coach</span>
-          <span class="cred-tag">Holistic Health</span>
-          <span class="cred-tag">Behavior Change</span>
-          <span class="cred-tag">Sleep Optimization</span>
+      <div class="nav-item" onclick="showPanel('philosophy')" id="nav-philosophy">
+        <div class="nav-dot" style="background:#2c4a30;color:#b8d4bb">2</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">The 4-Pillar Philosophy</div>
+          <div class="nav-item-time">⏱ 5–12 min</div>
         </div>
+        <div class="nav-check" id="check-philosophy" onclick="toggleCheck(event,'philosophy')"></div>
+      </div>
+    </div>
+
+    <div class="phase-group">
+      <div class="phase-header">Discovery</div>
+      <div class="nav-item" onclick="showPanel('intake')" id="nav-intake">
+        <div class="nav-dot" style="background:#4a7c59;color:#fff">3</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Intake Form Review</div>
+          <div class="nav-item-time">⏱ 12–25 min</div>
+        </div>
+        <div class="nav-check" id="check-intake" onclick="toggleCheck(event,'intake')"></div>
+      </div>
+      <div class="nav-item" onclick="showPanel('goals')" id="nav-goals">
+        <div class="nav-dot" style="background:#4a7c59;color:#fff">4</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Goal Setting</div>
+          <div class="nav-item-time">⏱ 25–35 min</div>
+        </div>
+        <div class="nav-check" id="check-goals" onclick="toggleCheck(event,'goals')"></div>
+      </div>
+    </div>
+
+    <div class="phase-group">
+      <div class="phase-header">Closing</div>
+      <div class="nav-item" onclick="showPanel('homework')" id="nav-homework">
+        <div class="nav-dot" style="background:#b8924a;color:#fff">5</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Homework & Next Steps</div>
+          <div class="nav-item-time">⏱ 35–42 min</div>
+        </div>
+        <div class="nav-check" id="check-homework" onclick="toggleCheck(event,'homework')"></div>
+      </div>
+      <div class="nav-item" onclick="showPanel('close')" id="nav-close">
+        <div class="nav-dot" style="background:#b8924a;color:#fff">6</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Powerful Close</div>
+          <div class="nav-item-time">⏱ 42–45 min</div>
+        </div>
+        <div class="nav-check" id="check-close" onclick="toggleCheck(event,'close')"></div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- PILLARS -->
-<section id="pillars">
-  <div class="section-inner">
-    <div class="pillars-intro">
-      <div>
-        <div class="section-label">The Method</div>
-        <h2 class="section-title">Four pillars.<br><em>One whole life.</em></h2>
-      </div>
-      <p class="section-body">Most coaching addresses one dimension of health in isolation. The Powers Pillar Method treats all four as a single, interconnected system because when one pillar weakens, all four are affected.</p>
-    </div>
-    <div class="pillars-grid">
-      <div class="pillar-card" data-num="01">
-        <span class="pillar-emoji">🥗</span>
-        <div class="pillar-sub">Pillar One</div>
-        <h3>Nutrition</h3>
-        <p>Food is information. We build a foundation of whole, nourishing eating that's sustainable, joyful, and completely free of diet culture.</p>
-        <ul>
-          <li>Anti-inflammatory eating</li>
-          <li>Gut health & digestion</li>
-          <li>Blood sugar balance</li>
-          <li>Intuitive eating practices</li>
-        </ul>
-      </div>
-      <div class="pillar-card" data-num="02">
-        <span class="pillar-emoji">🌿</span>
-        <div class="pillar-sub">Pillar Two</div>
-        <h3>Lifestyle</h3>
-        <p>Your daily structure shapes your health as much as your diet. We design routines that support your body, reduce stress, and create energy.</p>
-        <ul>
-          <li>Movement & exercise design</li>
-          <li>Stress regulation tools</li>
-          <li>Morning & evening rituals</li>
-          <li>Environmental optimization</li>
-        </ul>
-      </div>
-      <div class="pillar-card" data-num="03">
-        <span class="pillar-emoji">🌙</span>
-        <div class="pillar-sub">Pillar Three</div>
-        <h3>Sleep</h3>
-        <p>Sleep is the most underrated wellness tool available and it's free. Poor sleep quietly undermines every other health effort you make.</p>
-        <ul>
-          <li>Sleep hygiene & environment</li>
-          <li>Circadian rhythm alignment</li>
-          <li>Wind-down protocol</li>
-          <li>Nervous system regulation</li>
-        </ul>
-      </div>
-      <div class="pillar-card" data-num="04">
-        <span class="pillar-emoji">🤝</span>
-        <div class="pillar-sub">Pillar Four</div>
-        <h3>Relationships</h3>
-        <p>Connection is a biological need, not a luxury. Your social environment and the relationship you have with yourself directly affect your health.</p>
-        <ul>
-          <li>Community & belonging</li>
-          <li>Boundaries & social eating</li>
-          <li>Self-relationship practices</li>
-          <li>Support system building</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- MAIN PANELS -->
+  <div class="main-content">
 
-<!-- AUDIT CTA -->
-<section id="audit" style="padding:0">
-  <div id="audit" style="background:var(--forest); padding:80px 48px;">
-    <div class="audit-inner">
-      <div class="audit-text">
-        <div class="section-label" style="color:var(--sage-lt)">Free Assessment</div>
-        <h2>Discover your <em>health score</em> across all four pillars</h2>
-        <p>The 4-Pillar Health Audit takes 10 minutes and shows you exactly where you're thriving and where you're holding yourself back. It's the first step every client takes before we work together.</p>
-        <a href="lead-magnet.html" class="btn-primary" style="display:inline-block">Download Free Audit →</a>
-      </div>
-      <div class="audit-form-card">
-        <h4>Get your free audit + a personal note from me</h4>
-        <p>Drop your email and I'll send it directly to you.</p>
-        <div class="form-field">
-          <input type="text" placeholder="First name">
-        </div>
-        <div class="form-field">
-          <input type="email" placeholder="Email address">
-        </div>
-        <button class="form-submit">Send Me the Audit →</button>
-        <p class="form-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PACKAGES -->
-<section id="packages">
-  <div class="section-inner">
-    <div style="text-align:center; max-width:600px; margin:0 auto;">
-      <div class="section-label" style="text-align:center">Work With Me</div>
-      <h2 class="section-title">Choose your <em>level of support</em></h2>
-      <p class="section-body" style="margin:0 auto">Every package includes the full 4-pillar framework. The difference is in how closely we work together.</p>
-    </div>
-    <div class="packages-grid">
-      <!-- Foundation -->
-      <div class="package-card">
-        <div class="package-name">Foundation</div>
-        <h3>Foundation</h3>
-        <div class="package-price">
-          <span class="package-amount">$297</span>
-          <span class="package-period"> / month</span>
-        </div>
-        <div class="package-divider"></div>
-        <ul class="package-features">
-          <li>2 × 45-min coaching calls/month</li>
-          <li>Personalized 4-pillar plan</li>
-          <li>Email support (48hr response)</li>
-          <li>Monthly progress tracker</li>
-          <li>Resource library access</li>
-        </ul>
-        <a href="https://buy.stripe.com/28EdR2bNh5bJf4j4XS9EI02" class="pkg-btn">Get Started →</a>
-      </div>
-
-      <!-- Transformation (featured) -->
-      <div class="package-card featured">
-        <div class="package-badge">Most Popular</div>
-        <div class="package-name">Transformation</div>
-        <h3>Transformation</h3>
-        <div class="package-price">
-          <span class="package-amount">$497</span>
-          <span class="package-period"> / month</span>
-        </div>
-        <div class="package-divider"></div>
-        <ul class="package-features">
-          <li>4 × 45-min coaching calls/month</li>
-          <li>Full 4-pillar assessment + roadmap</li>
-          <li>Weekly voice note check-ins</li>
-          <li>Meal, sleep & habit templates</li>
-          <li>Private messaging support</li>
-          <li>Full resource library</li>
-        </ul>
-        <a href="https://buy.stripe.com/8x200caJd9rZaO30HC9EI01" class="pkg-btn">Book Discovery Call →</a>
-      </div>
-
-
-    </div>
-    <p style="text-align:center; margin-top:32px; font-size:14px; color:var(--muted);">Not sure which is right for you? <a href="https://calendly.com/powerspillarmethod" style="color:var(--sage); text-decoration:underline;">Book a free 20-min discovery call</a> and we'll figure it out together.</p>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-inner">
-    <div class="section-label" style="text-align:center">Client Results</div>
-    <h2 class="section-title" style="text-align:center; max-width:600px; margin:0 auto 16px">Real people. <em>Real transformation.</em></h2>
-    <p class="section-body" style="text-align:center; margin:0 auto 0; max-width:480px">.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <span class="testimonial-stars">★★★★★</span>
-        <p class="testimonial-quote">I'd tried every diet program out there. Working through all four pillars together was the first time I understood why nothing else had stuck — and finally made lasting changes.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">🌸</div>
-          <div>
-            <div class="testimonial-name">Sarah M.</div>
-            <div class="testimonial-detail">12-week Transformation client</div>
-          </div>
+    <!-- ═══ PANEL 1: WELCOME ═══ -->
+    <div class="section-panel active" id="panel-welcome">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#e8f4ec">🌿</div>
+        <div class="panel-title">
+          <h2>Welcome & Set the Tone</h2>
+          <div class="time-badge">⏱ 0–5 minutes</div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <span class="testimonial-stars">★★★★★</span>
-        <p class="testimonial-quote">I came for the nutrition advice and stayed for everything else. The sleep and relationships work completely changed how I show up in my life. I didn't expect that.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">🌿</div>
-          <div>
-            <div class="testimonial-name">Jamie L.</div>
-            <div class="testimonial-detail">VIP Total Reset client</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <span class="testimonial-stars">★★★★★</span>
-        <p class="testimonial-quote">Three months in and I have more energy than I've had in years. The 4-pillar approach feels less like a program and more like a total life upgrade. Worth every penny.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">☀️</div>
-          <div>
-            <div class="testimonial-name">Chris R.</div>
-            <div class="testimonial-detail">Foundation client, month 4</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="section-inner">
-    <div class="faq-grid">
-      <div>
-        <div class="section-label">Questions</div>
-        <h2 class="section-title" style="margin-bottom:40px">Everything you <em>want to know</em></h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">How is this different from other nutrition coaching?</span>
-              <span class="faq-toggle">+</span>
+      <p class="panel-intro">"The first 5 minutes set the emotional tone for the entire 12 weeks. Your client is nervous. Your job is to make them feel safe, seen, and excited — in that order."</p>
+
+      <div class="content-block">
+        <div class="block-label">Opening Script</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"Hey [Name], it's so great to finally meet you. I'm Wes — I'm really glad you're here. Before we dive in, I just want you to know that this is a completely judgment-free space. There's nothing you can say that will surprise me, and nothing is off limits. The only rule is honesty — even if it's uncomfortable. That's where the real work happens."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-ask">Ask this</div>
+          <div class="script-text">"How are you feeling right now — about today, about starting this? Be honest."</div>
+          <div class="response-guide">
+            <div class="rg-label">If they say...</div>
+            <div class="response-item">
+              <div class="ri-trigger">"Nervous / scared"</div>
+              <div class="ri-response">"That's exactly right. Nervous means it matters to you. Let's use that energy."</div>
             </div>
-            <div class="faq-a">Most nutrition coaching focuses exclusively on food. The Powers Pillar Method addresses all four systems: nutrition, lifestyle, sleep, and relationships — because they're all interconnected. Improving one without addressing the others only gets you so far.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">How long does the program last?</span>
-              <span class="faq-toggle">+</span>
+            <div class="response-item">
+              <div class="ri-trigger">"Excited / ready"</div>
+              <div class="ri-response">"I love that. Let's make sure we channel that energy into something that actually lasts this time."</div>
             </div>
-            <div class="faq-a">The core program is 12 weeks, which gives us enough time to move through all four pillars and then integrate them. Many clients continue after 12 weeks either with ongoing monthly support or by joining a group coaching cohort.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">Do I need to follow a specific diet?</span>
-              <span class="faq-toggle">+</span>
+            <div class="response-item">
+              <div class="ri-trigger">"Skeptical / not sure"</div>
+              <div class="ri-response">"Honestly? Good. Skepticism means you've tried things before and been let down. We're going to do this differently."</div>
             </div>
-            <div class="faq-a">No restrictive diets, no calorie counting unless you want it. The Powers Pillar Method is rooted in whole-food, anti-inflammatory eating and a healthy relationship with food not deprivation or rigid rules.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">Where do sessions take place?</span>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-a">All coaching sessions are held via Zoom, so you can work with me from anywhere in the world. Sessions are typically 45 minutes and scheduled at a time that works for your timezone.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">What if I've already tried everything?</span>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-a">That's exactly who I work best with. If you've tried nutrition programs, fitness plans, or wellness apps and nothing has stuck it's likely because you were only addressing one pillar. The four-pillar approach reveals the gaps that have been holding you back.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span class="faq-q-text">Is there a payment plan?</span>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-a">Yes. All packages are billed monthly so there's no large upfront commitment. I also offer flexible arrangements for longer commitments — ask about this on your discovery call.</div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="faq-cta-card">
-          <h3>Still have questions? <em>Let's talk.</em></h3>
-          <p>Book a free 20-minute discovery call. No pressure, no pitch just a conversation about where you are and whether the Powers Pillar Method is the right fit for you.</p>
-          <a href="https://calendly.com/powerspillarmethod" class="faq-cta-btn">Book Free Discovery Call →</a>
-          <p class="faq-cta-note">20 minutes · Free · No obligation</p>
+        <div class="script-block">
+          <div class="script-tag tag-do">Do this</div>
+          <div class="script-text">Take <em>30 seconds of silence</em> after they answer. Let them feel heard. Resist the urge to fill the space immediately. Nod, make eye contact, then say: <em>"Thank you for sharing that. I hear you."</em></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <h3>The Powers Pillar Method</h3>
-      <p>Holistic nutrition coaching across four interconnected pillars because lasting health is never just about food.</p>
+      <div class="content-block">
+        <div class="block-label">Motivation Check</div>
+        <div class="script-block">
+          <div class="script-tag tag-ask">Ask this</div>
+          <div class="script-text">"Tell me — what's the real reason you're here? Not the surface answer. The 3am reason. The thing that made you finally say 'enough.'"</div>
+          <div class="response-guide">
+            <div class="rg-label">Coach notes</div>
+            <div class="response-item">
+              <div class="ri-trigger">Listen for</div>
+              <div class="ri-response">The emotional driver beneath the goal. "I want to lose weight" → dig deeper → "I want to feel confident in my body again." That's their real why. Write it down — you'll come back to it in Week 12.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Your Notes</div>
+        <textarea class="notes-area" placeholder="Write their real motivation here — you'll reference this throughout the 12 weeks..."></textarea>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn pnav-next" onclick="nextPanel('welcome','philosophy')">Next: The 4-Pillar Philosophy →</button>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="#about">About</a>
-      <a href="#pillars">The Method</a>
-      <a href="#packages">Packages</a>
-      <a href="#testimonials">Results</a>
-      <a href="#faq">FAQ</a>
+
+    <!-- ═══ PANEL 2: PHILOSOPHY ═══ -->
+    <div class="section-panel" id="panel-philosophy">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#f4f0e0">✦</div>
+        <div class="panel-title">
+          <h2>The 4-Pillar Philosophy</h2>
+          <div class="time-badge">⏱ 5–12 minutes</div>
+        </div>
+      </div>
+
+      <p class="panel-intro">"This is your framework introduction. Keep it conversational — not a lecture. You want them nodding along and saying 'that's exactly me' by the end of it."</p>
+
+      <div class="content-block">
+        <div class="block-label">The Core Explanation</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"Before we look at your intake form, I want to explain how I work — because it's different from most coaching you've probably seen. Most programs focus on one thing: usually food. And that's why they fail. Not because nutrition doesn't matter — it absolutely does — but because your body doesn't live in isolation. How you sleep affects what you crave. Who you spend time with affects what you eat. How stressed you are affects whether any of it works at all."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Continue with</div>
+          <div class="script-text">"The Powers Pillar Method is built around four pillars that all talk to each other. <em>Nutrition</em> — how you fuel your body. <em>Lifestyle</em> — how you move and manage your days. <em>Sleep</em> — how you recover. And <em>Relationships</em> — the most underestimated one — how you connect and who supports you. We're going to work on all four, all the time, starting today."</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Make it Personal to Them</div>
+        <div class="script-block">
+          <div class="script-tag tag-ask">Ask this</div>
+          <div class="script-text">"Just hearing those four pillars — Nutrition, Lifestyle, Sleep, Relationships — which one surprised you the most? Which one feels most uncomfortable to look at?"</div>
+          <div class="response-guide">
+            <div class="rg-label">Why this question matters</div>
+            <div class="response-item">
+              <div class="ri-trigger">What to listen for</div>
+              <div class="ri-response">The pillar they resist most is usually the one with the most opportunity. Note it. You'll revisit it in Weeks 8–9 when you focus on Relationships and self-work.</div>
+            </div>
+            <div class="response-item">
+              <div class="ri-trigger">If they say "Relationships"</div>
+              <div class="ri-response">"Most people say that. It's the one nobody talks about in wellness — but it quietly runs everything. We'll get there together."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Set Expectations</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"Here's what I need from you over the next 12 weeks: <em>honesty over perfection.</em> I don't need you to do everything right. I need you to tell me when things aren't working so we can adjust. This isn't a pass/fail program — it's a process. Some weeks will be hard. That's not failure. That's data. Deal?"</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Your Notes</div>
+        <textarea class="notes-area" placeholder="Which pillar did they say surprised them most? Any resistance? Note it here..."></textarea>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn" onclick="showPanel('welcome')">← Back</button>
+        <button class="pnav-btn pnav-next" onclick="nextPanel('philosophy','intake')">Next: Intake Review →</button>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <a href="https://www.instagram.com/the_powers_pillar_method" target="_blank">Instagram</a>
-      <a href="https://calendly.com/powerspillarmethod">Free Health Audit</a>
-      <a href="https://calendly.com/powerspillarmethod">Book a Call</a>
+
+    <!-- ═══ PANEL 3: INTAKE ═══ -->
+    <div class="section-panel" id="panel-intake">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#e8f4ec">📋</div>
+        <div class="panel-title">
+          <h2>Intake Form Review</h2>
+          <div class="time-badge">⏱ 12–25 minutes</div>
+        </div>
+      </div>
+
+      <p class="panel-intro">"This is the heart of Session 1. You're not reading the form to them — you're having a conversation based on what they wrote. Look for patterns, not just answers."</p>
+
+      <div class="content-block">
+        <div class="block-label">How to Approach the Review</div>
+        <div class="script-block">
+          <div class="script-tag tag-do">Do this</div>
+          <div class="script-text">Open their completed intake form. Scan it quickly before diving in. Identify: <em>their lowest-scoring pillar</em>, <em>the most emotionally charged answer</em>, and <em>any answer that surprised you</em>. Start with one of those three — not question 1.</div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Opening line</div>
+          <div class="script-text">"I've read through everything you wrote and I want to say — thank you for your honesty. A few things really stood out to me. Can I share what I noticed?"</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Key Questions to Explore (click to mark as asked)</div>
+        <div class="question-list">
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">1</div>
+            <div class="qi-content">
+              <div class="qi-q">"You mentioned [X from their form]. Tell me more about that — what does that look like in a typical week?"</div>
+              <div class="qi-why">Opens up their reality. Gets specifics rather than generalities.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">2</div>
+            <div class="qi-content">
+              <div class="qi-q">"When you think about your lowest-scoring pillar — when did that start? Was there a time in your life when that felt easier?"</div>
+              <div class="qi-why">Connects present struggles to history. Often reveals a trigger point.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">3</div>
+            <div class="qi-content">
+              <div class="qi-q">"What does a really good day feel like for you? Describe it in detail — physically, mentally, emotionally."</div>
+              <div class="qi-why">Establishes the vision. This becomes their north star.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">4</div>
+            <div class="qi-content">
+              <div class="qi-q">"What usually gets in the way? What's your version of falling off the wagon?"</div>
+              <div class="qi-why">Identifies their specific relapse pattern so you can plan for it proactively.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">5</div>
+            <div class="qi-content">
+              <div class="qi-q">"Is there anything in your form that you want to say more about — anything you held back?"</div>
+              <div class="qi-why">Creates safety for what wasn't written. Often the most important answer.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Coach Tips for This Section</div>
+        <div class="tip-grid">
+          <div class="tip-item">
+            <span class="tip-icon">👂</span>
+            <div class="tip-title">Listen at 80%</div>
+            <div class="tip-body">You should be talking 20% of the time in this section. Ask, then be silent. Resist the urge to offer solutions yet.</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">🔁</span>
+            <div class="tip-title">Reflect Back</div>
+            <div class="tip-body">After they speak, say "What I'm hearing is..." and reflect their words back. This builds trust faster than any advice.</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">📝</span>
+            <div class="tip-title">Take Notes Openly</div>
+            <div class="tip-body">"I'm writing this down because it's important" signals that you value what they say. Don't hide note-taking.</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">⚡</span>
+            <div class="tip-title">Follow the Energy</div>
+            <div class="tip-body">When they light up or their voice changes — follow that thread. That's where the real work lives.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Your Notes — Key Insights from Intake</div>
+        <textarea class="notes-area" placeholder="Lowest scoring pillar:&#10;Most emotionally charged answer:&#10;Relapse pattern:&#10;Their 'good day' description:&#10;What they held back:"></textarea>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn" onclick="showPanel('philosophy')">← Back</button>
+        <button class="pnav-btn pnav-next" onclick="nextPanel('intake','goals')">Next: Goal Setting →</button>
+      </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 The Powers Pillar Method · All rights reserved</span>
-    <span>Nutrition coaching · Not medical advice</span>
-  </div>
-</footer>
+
+    <!-- ═══ PANEL 4: GOALS ═══ -->
+    <div class="section-panel" id="panel-goals">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#f0e0f0">🎯</div>
+        <div class="panel-title">
+          <h2>Goal Setting</h2>
+          <div class="time-badge">⏱ 25–35 minutes</div>
+        </div>
+      </div>
+
+      <p class="panel-intro">"Goals set in the first session become the compass for the next 12 weeks. They need to be emotional, specific, and owned by the client — not handed to them by you."</p>
+
+      <div class="content-block">
+        <div class="block-label">The Goal-Setting Framework</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"I want us to set three goals together — one for each of the next three phases of our work. But I want these to be your goals, not my goals for you. So I'm going to ask you some questions and we'll build them from your answers."</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Goal-Setting Questions (click to mark as asked)</div>
+        <div class="question-list">
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">1</div>
+            <div class="qi-content">
+              <div class="qi-q">"In 12 weeks, when this program is done, what do you want to be able to say is different? Not what you want to weigh — how do you want to feel?"</div>
+              <div class="qi-why">Gets the emotional goal beneath the surface goal.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">2</div>
+            <div class="qi-content">
+              <div class="qi-q">"Which pillar — if you improved it significantly — would change the most about your daily life?"</div>
+              <div class="qi-why">Identifies their highest-leverage starting point.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+          <div class="question-item" onclick="markAsked(this)">
+            <div class="qi-num">3</div>
+            <div class="qi-content">
+              <div class="qi-q">"What's one thing you want to stop doing, one thing you want to start doing, and one thing you want to feel differently about?"</div>
+              <div class="qi-why">Creates a stop/start/feel framework that covers behavior and mindset.</div>
+            </div>
+            <div class="qi-check">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Write Their 3 Goals Together</div>
+        <div class="script-block">
+          <div class="script-tag tag-do">Do this</div>
+          <div class="script-text">Based on their answers, co-write 3 goals with them. Each goal should: start with <em>"By Week 12 I will..."</em>, be specific and emotionally meaningful, touch at least one pillar. Read them back and ask: <em>"Does that feel true to you? Is that really what you want?"</em></div>
+        </div>
+        <textarea class="notes-area" placeholder="Goal 1: By Week 12 I will...&#10;&#10;Goal 2: By Week 12 I will...&#10;&#10;Goal 3: By Week 12 I will..."></textarea>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Anchor the Commitment</div>
+        <div class="script-block">
+          <div class="script-tag tag-ask">Ask this</div>
+          <div class="script-text">"On a scale of 1–10, how committed are you to these goals right now?"</div>
+          <div class="response-guide">
+            <div class="rg-label">How to respond</div>
+            <div class="response-item">
+              <div class="ri-trigger">They say 7 or below</div>
+              <div class="ri-response">"What would need to be different for it to be a 9?" — then adjust the goals or address the blocker directly.</div>
+            </div>
+            <div class="response-item">
+              <div class="ri-trigger">They say 8–10</div>
+              <div class="ri-response">"Good. I'm going to remind you of that number on the hard weeks. Screenshot these goals and put them somewhere you'll see them."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn" onclick="showPanel('intake')">← Back</button>
+        <button class="pnav-btn pnav-next" onclick="nextPanel('goals','homework')">Next: Homework →</button>
+      </div>
+    </div>
+
+    <!-- ═══ PANEL 5: HOMEWORK ═══ -->
+    <div class="section-panel" id="panel-homework">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#fff8e6">📚</div>
+        <div class="panel-title">
+          <h2>Homework & Next Steps</h2>
+          <div class="time-badge">⏱ 35–42 minutes</div>
+        </div>
+      </div>
+
+      <p class="panel-intro">"Keep Week 1 homework simple. The goal is momentum and observation — not transformation. Overwhelm in Week 1 kills programs. One win builds the belief they need."</p>
+
+      <div class="content-block">
+        <div class="block-label">Assign Homework (click to assign each)</div>
+        <div class="hw-list">
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div>
+              <div class="hw-text">Complete the 5-day Food & Mood Journal — observe only, no changes yet</div>
+              <div class="hw-pillar">🥗 Nutrition Pillar</div>
+            </div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div>
+              <div class="hw-text">Track sleep duration and quality for 7 nights using the Sleep Tracker</div>
+              <div class="hw-pillar">🌙 Sleep Pillar</div>
+            </div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div>
+              <div class="hw-text">Note one relationship dynamic that feels supportive and one that feels draining</div>
+              <div class="hw-pillar">🤝 Relationships Pillar</div>
+            </div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div>
+              <div class="hw-text">Write down your current morning and evening routine exactly as it is — no improvements yet</div>
+              <div class="hw-pillar">🌿 Lifestyle Pillar</div>
+            </div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div>
+              <div class="hw-text">Screenshot your 3 goals and put them somewhere you'll see every day</div>
+              <div class="hw-pillar">✦ All Pillars</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">How to Frame the Homework</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"This week's homework is about <em>awareness, not action.</em> I don't want you to change anything yet. I want you to observe — like a scientist studying your own life. Everything you notice this week becomes data we use in Session 2. There are no bad results. There's only information."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-note">Coach note</div>
+          <div class="script-text">Send the worksheets immediately after the call — while the energy is high. Include a personal note referencing something specific they said today. This touch point matters more than most coaches realize.</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Check-In Protocol</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"Between now and our next session, I'll check in mid-week — just a quick message to see how the journaling is going. If anything feels hard or confusing, reach out. You're not doing this alone."</div>
+        </div>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn" onclick="showPanel('goals')">← Back</button>
+        <button class="pnav-btn pnav-next" onclick="nextPanel('homework','close')">Next: Powerful Close →</button>
+      </div>
+    </div>
+
+    <!-- ═══ PANEL 6: CLOSE ═══ -->
+    <div class="section-panel" id="panel-close">
+      <div class="panel-header">
+        <div class="panel-icon" style="background:#2c4a30;font-size:22px">🌟</div>
+        <div class="panel-title">
+          <h2>The Powerful Close</h2>
+          <div class="time-badge">⏱ 42–45 minutes</div>
+        </div>
+      </div>
+
+      <p class="panel-intro">"The last 3 minutes are what they'll remember most. End with intention. Leave them feeling seen, capable, and genuinely excited for what's ahead."</p>
+
+      <div class="content-block">
+        <div class="block-label">The Closing Script</div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Say this</div>
+          <div class="script-text">"Before we close, I want to say something. I've sat with a lot of people in this seat, and what you shared today took courage. The fact that you showed up, that you were honest, that you said yes to this — that already tells me something about who you are. You're someone who takes their health seriously. Let's honor that over the next 12 weeks."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-ask">Final question</div>
+          <div class="script-text">"One last thing — what's the one word you want to feel like at the end of our 12 weeks together?"</div>
+          <div class="response-guide">
+            <div class="rg-label">Coach note</div>
+            <div class="response-item">
+              <div class="ri-trigger">Write down their word</div>
+              <div class="ri-response">This becomes your secret weapon. Reference it on hard weeks. End Week 12 by asking: "Do you feel [their word] now?" The answer is almost always yes — and it's one of the most powerful moments in coaching.</div>
+            </div>
+          </div>
+        </div>
+        <div class="script-block">
+          <div class="script-tag tag-say">Send-off</div>
+          <div class="script-text">"I'll send your worksheets and our session notes over in the next hour. Our next session is [date/time]. I'm genuinely excited to see what you discover this week. Go be curious about yourself."</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Their One Word</div>
+        <textarea class="notes-area" style="min-height:80px" placeholder="Write their one word here — you'll come back to this in Week 12..."></textarea>
+      </div>
+
+      <div class="content-block">
+        <div class="block-label">Post-Session Checklist</div>
+        <div class="hw-list">
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div class="hw-text">Send worksheets within 1 hour of session ending</div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div class="hw-text">Send personal note referencing something specific they said</div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div class="hw-text">Log their goals, real motivation, and one word in your client notes</div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div class="hw-text">Schedule mid-week check-in message (3–4 days from today)</div>
+          </div>
+          <div class="hw-item" onclick="toggleHw(this)">
+            <div class="hw-check">✓</div>
+            <div class="hw-text">Confirm Session 2 date and time</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-nav">
+        <button class="pnav-btn" onclick="showPanel('homework')">← Back</button>
+        <button class="pnav-btn pnav-next" style="background:var(--gold)" onclick="alert('Session 1 complete! Great work, Wes. 🌿')">✓ Session Complete</button>
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end app-body -->
 
 <script>
-  // Sticky nav
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-  });
+// NAVIGATION
+function showPanel(id) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  document.querySelector('.main-content').scrollTo(0, 0);
+}
 
-  // FAQ accordion
-  function toggleFaq(el) {
-    const item = el.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+function nextPanel(current, next) {
+  document.getElementById('check-' + current).classList.add('done');
+  document.getElementById('check-' + current).textContent = '✓';
+  showPanel(next);
+}
+
+// QUESTION MARKING
+function markAsked(el) {
+  el.classList.toggle('asked');
+  el.querySelector('.qi-check').textContent = el.classList.contains('asked') ? '✓' : '';
+}
+
+// HOMEWORK TOGGLE
+function toggleHw(el) {
+  el.classList.toggle('assigned');
+  el.querySelector('.hw-check').textContent = el.classList.contains('assigned') ? '✓' : '';
+  el.querySelector('.hw-check').style.color = el.classList.contains('assigned') ? '#fff' : 'transparent';
+}
+
+// CHECK TOGGLE
+function toggleCheck(e, id) {
+  e.stopPropagation();
+  const el = document.getElementById('check-' + id);
+  el.classList.toggle('done');
+  el.textContent = el.classList.contains('done') ? '✓' : '';
+}
+
+// TIMER
+let timerInterval = null;
+let timerSeconds = 45 * 60;
+let timerRunning = false;
+
+function toggleTimer() {
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.querySelector('.timer-start').textContent = '▶ Resume';
+  } else {
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      if (timerSeconds <= 0) { clearInterval(timerInterval); timerSeconds = 0; }
+      updateTimerDisplay();
+    }, 1000);
+    timerRunning = true;
+    document.querySelector('.timer-start').textContent = '⏸ Pause';
   }
+}
 
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = 45 * 60;
+  document.querySelector('.timer-start').textContent = '▶ Start';
+  updateTimerDisplay();
+}
 
-  document.querySelectorAll('.pillar-card, .package-card, .testimonial-card, .about-grid').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
+  const display = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  document.getElementById('timerDisplay').textContent = display;
+  // Turn red in last 5 minutes
+  document.getElementById('timerDisplay').style.color = timerSeconds <= 300 ? '#e07070' : '#fff';
+}
 </script>
-
 </body>
 </html>
